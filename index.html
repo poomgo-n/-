@@ -49,14 +49,15 @@
     .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px;}
     .brand{display:flex; align-items:center; gap:12px; min-width:260px;}
 
-    /* 로고: 이미지 자체만 크게 */
+    /* ✅ 로고 크기 */
     .brand-logo{
-      height:54px; width:auto;
+      height:32px;
+      width:auto;
       display:block;
       object-fit:contain;
     }
     @media (max-width:520px){
-      .brand-logo{height:44px;}
+      .brand-logo{height:28px;}
     }
 
     .brand-title{
@@ -155,6 +156,7 @@
     /* Content */
     main{padding:14px;}
 
+    /* ✅ 검색 상단 */
     .toolbar{
       display:flex;
       gap:10px;
@@ -234,6 +236,7 @@
       padding:16px;
       margin-bottom:14px;
     }
+    /* ✅ 스타일만 적용 (텍스트는 안 보여줌) */
     .block.callout-red{background:var(--danger-bg); border-color:var(--danger-line);}
     .block.callout-yellow{background:var(--warn-bg); border-color:var(--warn-line);}
     .block.callout-green{background:var(--ok-bg); border-color:var(--ok-line);}
@@ -255,7 +258,7 @@
     .body ul{margin:8px 0 8px 18px;}
     .body li{margin:4px 0;}
 
-    /* pre 출력: 공백/정렬 유지 */
+    /* ✅ pre: 공백/정렬 유지 */
     .body pre{
       white-space:pre;
       font-family:"Pretendard Variable","Pretendard",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -267,20 +270,6 @@
       border-radius:14px;
       background:rgba(255,255,255,.7);
       overflow:auto;
-    }
-
-    .img-wrap{
-      margin-top:12px;
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#f8fafc;
-    }
-    .img-wrap img{
-      width:100%;
-      height:auto;
-      display:block;
-      cursor:zoom-in;
     }
 
     /* Segmented (➊➋➌...) */
@@ -335,6 +324,45 @@
       font-weight:950;
     }
     table.md tr:last-child td{border-bottom:none;}
+
+    /* ✅ 예시 보기 토글 */
+    .img-toggle-row{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .img-toggle-btn{
+      border:1px solid var(--line);
+      background:#fff;
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:900;
+      color:#0f172a;
+    }
+    .img-toggle-btn:hover{background:#fbfdff; border-color:#cfe0ff;}
+    .img-caption{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .img-wrap{
+      margin-top:12px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#f8fafc;
+      display:none; /* ✅ 기본 숨김 */
+    }
+    .img-wrap.open{display:block;}
+    .img-wrap img{
+      width:100%;
+      height:auto;
+      display:block;
+      cursor:zoom-in;
+    }
 
     /* Modal */
     .modal{
@@ -397,12 +425,14 @@
     <div class="menu" id="menu"></div>
     <div class="sidebar-note">
       ※ 본 가이드는 운영 기준에 따라 변경될 수 있습니다.<br/>
+      ※ 내용 수정은 구글 시트에서 관리됩니다.
     </div>
   </aside>
 
   <main id="content">
     <div class="panel hero">
       <h1>로딩 중…</h1>
+      <p>구글 시트 데이터를 불러오고 있어요.</p>
     </div>
   </main>
 </div>
@@ -598,7 +628,7 @@
   let SECTIONS = [];
   let ACTIVE_KEY = null;
 
-  // ✅ 기본: 현재 섹션만 보기
+  // ✅ 기본: 목차 섹션만
   let SEARCH_ALL = false;
   let QUERY = "";
 
@@ -621,8 +651,7 @@
         <div class="menu-count">${sec.items.length}</div>
       `;
       btn.addEventListener("click", ()=>{
-        // ✅ 목차 클릭하면 해당 섹션만 표시
-        SEARCH_ALL = false;
+        SEARCH_ALL = false;           // ✅ 목차 클릭하면 해당 섹션만
         setActive(sec.sectionKey);
         render();
         if (window.innerWidth <= 980) window.scrollTo({top:0, behavior:"smooth"});
@@ -686,11 +715,11 @@
 
     const matches = getFilteredItems();
 
-    // ✅ 검색을 제목 위로
     contentEl.innerHTML = `
       ${renderToolbar(matches.length)}
       <div class="panel hero">
         <h1>${escapeHtml(activeSection.sectionTitle)}</h1>
+        <p>구글 시트에서 내용을 수정하면 이 페이지에 반영됩니다.</p>
       </div>
       <div id="blocks"></div>
     `;
@@ -712,7 +741,6 @@
       return;
     }
 
-    // 그룹(전체보기일 때만 섹션별로 묶어 보여주기)
     const grouped = new Map();
     for (const m of matches){
       const k = m.section.sectionKey;
@@ -736,7 +764,7 @@
       }
 
       for (const it of items){
-        const blockType = (it.blockType || "").trim(); // ✅ 스타일(class)만 적용, 텍스트로는 안 보여줌
+        const blockType = (it.blockType || "").trim(); // ✅ class로만 사용
         const cls = ["block", blockType].filter(Boolean).join(" ");
 
         const imgSrc = driveToImg(it.imageUrl);
@@ -746,10 +774,21 @@
           <div class="${cls}">
             ${it.title ? `<div class="block-title">${escapeHtml(it.title)}</div>` : ``}
             <div class="body">${bodyHtml}</div>
+
             ${imgSrc ? `
-              <div class="img-wrap">
+              <div class="img-toggle-row">
+                <button class="img-toggle-btn" type="button"
+                  data-toggle="img"
+                  data-target="img_${it.__id}">
+                  예시 보기
+                </button>
+                <div class="img-caption">클릭 시 예시 이미지를 펼쳐볼 수 있어요.</div>
+              </div>
+
+              <div class="img-wrap" id="img_${it.__id}">
                 <img src="${imgSrc}" alt="image" data-original="${escapeHtml(it.imageUrl||"")}">
-              </div>` : ``}
+              </div>
+            ` : ``}
           </div>
         `;
       }
@@ -757,11 +796,28 @@
 
     blocksEl.innerHTML = html;
 
+    // 이미지 클릭 확대 + 에러 fallback
     blocksEl.querySelectorAll("img[data-original]").forEach(img=>{
       img.addEventListener("click", ()=> openModal(img.src));
       img.addEventListener("error", ()=>{
         const fallback = driveThumbFallback(img.dataset.original);
         if (fallback && img.src !== fallback) img.src = fallback;
+      });
+    });
+
+    // ✅ 예시 보기 토글
+    blocksEl.querySelectorAll('button[data-toggle="img"]').forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const targetId = btn.dataset.target;
+        const wrap = document.getElementById(targetId);
+        if(!wrap) return;
+
+        const isOpen = wrap.classList.toggle("open");
+        btn.textContent = isOpen ? "예시 닫기" : "예시 보기";
+
+        if (isOpen){
+          wrap.scrollIntoView({behavior:"smooth", block:"nearest"});
+        }
       });
     });
   }
@@ -817,6 +873,8 @@
     }
 
     const map = new Map();
+    let autoId = 0;
+
     for (const r of body){
       const sectionKey = (r[iSectionKey] ?? "").toString().trim();
       if(!sectionKey) continue;
@@ -829,11 +887,12 @@
       }
 
       map.get(sectionKey).items.push({
+        __id: (++autoId),
         blockType: (iBlockType >= 0 ? (r[iBlockType] ?? "").toString().trim() : ""),
         title: (iTitle >= 0 ? (r[iTitle] ?? "").toString().trim() : ""),
         body: (iBody >= 0 ? (r[iBody] ?? "").toString().trim() : ""),
         imageUrl: (iImageUrl >= 0 ? (r[iImageUrl] ?? "").toString().trim() : ""),
-        orderNum: (iOrder >= 0 ? normalizeNumber(r[iOrder]) : 0), // ✅ 화면에는 안 보이지만 정렬에 사용
+        orderNum: (iOrder >= 0 ? normalizeNumber(r[iOrder]) : 0), // 정렬용(표시X)
       });
     }
 
