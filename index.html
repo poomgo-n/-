@@ -49,16 +49,13 @@
     .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px;}
     .brand{display:flex; align-items:center; gap:12px; min-width:260px;}
 
-    /* ✅ 로고 크기 */
     .brand-logo{
       height:32px;
       width:auto;
       display:block;
       object-fit:contain;
     }
-    @media (max-width:520px){
-      .brand-logo{height:28px;}
-    }
+    @media (max-width:520px){ .brand-logo{height:28px;} }
 
     .brand-title{
       font-weight:950;
@@ -123,36 +120,27 @@
     .menu-btn:hover{border-color:#cfe0ff; background:#fbfdff;}
     .menu-btn.active{border-color:#b8d0ff; background:var(--primary-weak);}
     .menu-left{display:flex; align-items:center; gap:10px; min-width:0;}
-
-    /* ✅ (중복 숫자 원인) menu-num 제거했으니 CSS도 필요 없음. 남겨도 무해하지만 깔끔하게 삭제. */
-
     .menu-label{
-      font-weight:950; font-size:14px;
+      font-weight:950;
+      font-size:15px;      /* ✅ 목차 글씨 키움 */
       overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
       letter-spacing:-.2px;
     }
     .menu-count{
-      min-width:22px;height:22px;padding:0 8px;border-radius:999px;
+      min-width:24px;height:24px;padding:0 9px;border-radius:999px;
       background:#fff;border:1px solid var(--line);
       color:var(--muted);font-size:12px;
       display:grid; place-items:center;
       flex:0 0 auto;
     }
     .sidebar-note{
-      margin-top:12px;
-      padding:12px;
-      border-radius:14px;
-      background:#f7f9ff;
-      border:1px dashed #d8e4ff;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.55;
+      display:none; /* ✅ "구글 시트 관리" 류 안내 전부 숨김 */
     }
 
     /* Content */
     main{padding:14px;}
 
-    /* ✅ 검색 상단 */
+    /* Toolbar */
     .toolbar{
       display:flex;
       gap:10px;
@@ -168,21 +156,21 @@
       border:1px solid var(--line);
       background:#fff;
       border-radius:14px;
-      padding:10px 12px;
+      padding:12px 14px;       /* ✅ 더 큼 */
       min-width: 280px;
       flex: 1 1 520px;
     }
     .input input{
       border:none; outline:none; width:100%;
-      font:inherit; font-size:14px;
+      font:inherit; font-size:15px;   /* ✅ 검색 글씨 키움 */
       background:transparent;
     }
     .pill{
       border:1px solid var(--line);
       background:#fff;
-      padding:8px 10px;
+      padding:10px 12px;       /* ✅ 더 큼 */
       border-radius:999px;
-      font-size:12px;
+      font-size:13px;          /* ✅ 더 큼 */
       color:var(--muted);
       display:flex; align-items:center; gap:8px;
       cursor:pointer;
@@ -198,69 +186,68 @@
     .btn{
       border:1px solid var(--line);
       background:#fff;
-      padding:10px 12px;
+      padding:12px 14px;      /* ✅ 더 큼 */
       border-radius:14px;
       cursor:pointer;
       font-weight:900;
+      font-size:14px;         /* ✅ 더 큼 */
       color:#0f172a;
       white-space:nowrap;
     }
     .btn:hover{background:#fbfdff; border-color:#cfe0ff;}
-
-    .hero{
-      padding:16px;
-      margin-bottom:14px;
-    }
-    .hero h1{
-      margin:0;
-      font-size:20px;
-      font-weight:950;
-      letter-spacing:-.45px;
-    }
-    .hero p{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
-    }
 
     .block{
       border:1px solid var(--line);
       border-radius:16px;
       background:#fff;
       box-shadow:0 8px 24px rgba(15,23,42,.06);
-      padding:16px;
+      padding:18px;           /* ✅ 여백 조금 증가 */
       margin-bottom:14px;
     }
-    /* ✅ 스타일만 적용 (텍스트는 안 보여줌) */
     .block.callout-red{background:var(--danger-bg); border-color:var(--danger-line);}
     .block.callout-yellow{background:var(--warn-bg); border-color:var(--warn-line);}
     .block.callout-green{background:var(--ok-bg); border-color:var(--ok-line);}
 
+    /* ✅ 블록 제목(가독성) */
     .block-title{
       margin:0 0 10px;
-      font-size:16px;
+      font-size:17px;        /* ✅ 더 큼 */
       font-weight:950;
       letter-spacing:-.25px;
       line-height:1.35;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    /* ✅ 검은 숫자칩 */
+    .title-chip{
+      width:26px; height:26px;
+      border-radius:9px;
+      background:#111827;
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-weight:950;
+      font-size:12px;
+      flex:0 0 auto;
     }
 
     .body{
-      font-size:13.5px;
+      font-size:15px;       /* ✅ 본문 크게 */
       color:#334155;
-      line-height:1.75;
+      line-height:1.85;     /* ✅ 줄간격 증가 */
     }
     .body strong{color:#0f172a;}
-    .body ul{margin:8px 0 8px 18px;}
-    .body li{margin:4px 0;}
+    .body ul{margin:10px 0 10px 20px;}
+    .body li{margin:6px 0;}
 
-    /* ✅ pre: 공백/정렬 유지 */
     .body pre{
       white-space:pre;
       font-family:"Pretendard Variable","Pretendard",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      font-size:13.5px;
-      line-height:1.7;
-      margin:10px 0;
+      font-size:14px;       /* ✅ pre도 조금 키움 */
+      line-height:1.75;
+      margin:12px 0;
       padding:12px 14px;
       border:1px solid rgba(15,23,42,.10);
       border-radius:14px;
@@ -269,7 +256,7 @@
     }
 
     /* Segmented (➊➋➌...) */
-    .seg-list{display:flex; flex-direction:column; gap:10px; margin-top:8px;}
+    .seg-list{display:flex; flex-direction:column; gap:12px; margin-top:10px;}
     .seg-item{
       background:rgba(255,255,255,.75);
       border:1px solid rgba(15,23,42,.10);
@@ -279,21 +266,21 @@
     .callout-red .seg-item{border-color:rgba(254,205,211,.95);}
     .seg-top{display:flex; gap:10px; align-items:flex-start;}
     .seg-badge{
-      width:26px;height:26px;border-radius:9px;
+      width:28px;height:28px;border-radius:10px;
       display:grid; place-items:center;
       background:#111827;color:#fff;
       font-weight:950;font-size:12px;
       flex:0 0 auto;
       margin-top:1px;
     }
-    .seg-head{font-weight:950; font-size:13.5px; line-height:1.5;}
+    .seg-head{font-weight:950; font-size:15px; line-height:1.55;}
     .seg-body{
-      margin-top:8px;
-      padding-top:8px;
+      margin-top:10px;
+      padding-top:10px;
       border-top:1px dashed rgba(15,23,42,.14);
       color:#334155;
-      font-size:13px;
-      line-height:1.7;
+      font-size:14.5px;
+      line-height:1.8;
     }
 
     /* Table from [[table]] */
@@ -304,13 +291,13 @@
       border:1px solid var(--line);
       border-radius:14px;
       overflow:hidden;
-      margin:10px 0;
+      margin:12px 0;
       background:#fff;
     }
     table.md th, table.md td{
-      padding:10px 12px;
+      padding:12px 12px;
       border-bottom:1px solid var(--line);
-      font-size:13px;
+      font-size:14px;      /* ✅ 표 글씨 키움 */
       vertical-align:top;
     }
     table.md th{
@@ -321,9 +308,9 @@
     }
     table.md tr:last-child td{border-bottom:none;}
 
-    /* ✅ 예시 보기 토글 */
+    /* 예시 보기 토글 */
     .img-toggle-row{
-      margin-top:12px;
+      margin-top:14px;
       display:flex;
       gap:10px;
       align-items:center;
@@ -332,15 +319,16 @@
     .img-toggle-btn{
       border:1px solid var(--line);
       background:#fff;
-      padding:10px 12px;
+      padding:12px 14px;
       border-radius:14px;
       cursor:pointer;
       font-weight:900;
+      font-size:14px;
       color:#0f172a;
     }
     .img-toggle-btn:hover{background:#fbfdff; border-color:#cfe0ff;}
     .img-caption{
-      font-size:12px;
+      font-size:13px;
       color:var(--muted);
     }
 
@@ -350,7 +338,7 @@
       overflow:hidden;
       border:1px solid var(--line);
       background:#f8fafc;
-      display:none; /* ✅ 기본 숨김 */
+      display:none;
     }
     .img-wrap.open{display:block;}
     .img-wrap img{
@@ -396,8 +384,8 @@
     .empty{
       padding:18px;
       color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
+      font-size:14px;
+      line-height:1.7;
     }
   </style>
 </head>
@@ -419,14 +407,12 @@
   <aside class="panel sidebar">
     <h3>목차</h3>
     <div class="menu" id="menu"></div>
-    <div class="sidebar-note">
-      ※ 본 가이드는 운영 기준에 따라 변경될 수 있습니다.<br/>
-    </div>
+    <!-- ✅ 안내문구 삭제 -->
   </aside>
 
   <main id="content">
-    <div class="panel hero">
-      <h1>로딩 중…</h1>
+    <div class="panel" style="padding:16px;">
+      로딩 중…
     </div>
   </main>
 </div>
@@ -520,6 +506,17 @@
     return "";
   }
 
+  // ✅ title 맨 앞 숫자(1,2,3...) 추출해서 칩으로 만들기
+  function splitLeadingNumberTitle(title){
+    const t = (title || "").trim();
+    // "1 ...", "1. ...", "1) ...", "01 ..." 등
+    const m = t.match(/^(\d{1,3})\s*[.)]?\s*(.*)$/);
+    if(!m) return { num:null, text:t };
+    const num = m[1];
+    const text = (m[2] || "").trim() || t;
+    return { num, text };
+  }
+
   function renderPreBlocks(s){
     return s.replace(/\[\[pre\]\]([\s\S]*?)\[\[\/pre\]\]/g, (_,content)=> `<pre>${content}</pre>`);
   }
@@ -560,7 +557,7 @@
 
       if (inList){ out += "</ul>"; inList=false; }
 
-      if (t === "") out += `<div style="height:8px"></div>`;
+      if (t === "") out += `<div style="height:10px"></div>`;
       else out += `<div>${t}</div>`;
     }
     if (inList) out += "</ul>";
@@ -621,9 +618,7 @@
 
   let SECTIONS = [];
   let ACTIVE_KEY = null;
-
-  // ✅ 기본: 목차 섹션만
-  let SEARCH_ALL = false;
+  let SEARCH_ALL = false; // 기본: 현재 섹션만
   let QUERY = "";
 
   function normalizeNumber(x){
@@ -638,7 +633,6 @@
       btn.className = "menu-btn";
       btn.dataset.key = sec.sectionKey;
 
-      // ✅ 중복 숫자 제거: 파란 번호칩(menu-num) 삭제
       btn.innerHTML = `
         <div class="menu-left">
           <div class="menu-label">${escapeHtml(sec.sectionTitle)}</div>
@@ -702,21 +696,15 @@
   function render(){
     const activeSection = SECTIONS.find(s=>s.sectionKey === ACTIVE_KEY) || SECTIONS[0];
     if (!activeSection){
-      contentEl.innerHTML = `
-        <div class="panel hero">
-          <h1>데이터가 비어있어요</h1>
-          <p>시트에 데이터가 있는지, 웹 게시가 되어있는지 확인해 주세요.</p>
-        </div>`;
+      contentEl.innerHTML = `<div class="panel" style="padding:16px;">데이터가 비어있어요.</div>`;
       return;
     }
 
     const matches = getFilteredItems();
 
+    // ✅ 섹션 제목(오른쪽에 제목 한 번 더 나오는 것) 제거: hero 카드 자체를 없앰
     contentEl.innerHTML = `
       ${renderToolbar(matches.length)}
-      <div class="panel hero">
-        <h1>${escapeHtml(activeSection.sectionTitle)}</h1>
-      </div>
       <div id="blocks"></div>
     `;
 
@@ -733,7 +721,7 @@
     const blocksEl = $("#blocks");
 
     if (matches.length === 0){
-      blocksEl.innerHTML = `<div class="panel empty">검색 결과가 없어요. (검색 범위를 바꾸거나 키워드를 줄여보세요)</div>`;
+      blocksEl.innerHTML = `<div class="panel empty">검색 결과가 없어요.</div>`;
       return;
     }
 
@@ -750,25 +738,33 @@
       const sec = v.section;
       const items = v.items;
 
+      // 전체 보기일 때만 섹션 구분 헤더 출력(제목 중복 느낌 줄이기 위해 작게)
       if (SEARCH_ALL){
         html += `
-          <div class="panel hero" style="box-shadow:none; margin-bottom:14px; border-radius:14px;">
-            <h1 style="font-size:16px; margin:0;">${escapeHtml(sec.sectionTitle)}</h1>
-            <p style="margin:6px 0 0;">결과 ${items.length}건</p>
+          <div class="panel" style="padding:14px 16px; margin-bottom:12px; box-shadow:none;">
+            <div style="font-weight:950; font-size:16px;">${escapeHtml(sec.sectionTitle)}</div>
           </div>
         `;
       }
 
       for (const it of items){
-        const blockType = (it.blockType || "").trim(); // ✅ class로만 사용
+        const blockType = (it.blockType || "").trim();
         const cls = ["block", blockType].filter(Boolean).join(" ");
 
         const imgSrc = driveToImg(it.imageUrl);
         const bodyHtml = renderBody(it.body || "");
 
+        // ✅ title 앞 숫자 -> 칩으로 변환
+        const sp = splitLeadingNumberTitle(it.title || "");
+        const titleHtml = it.title ? `
+          <div class="block-title">
+            ${sp.num ? `<span class="title-chip">${escapeHtml(sp.num)}</span>` : ``}
+            <span>${escapeHtml(sp.text)}</span>
+          </div>` : ``;
+
         html += `
           <div class="${cls}">
-            ${it.title ? `<div class="block-title">${escapeHtml(it.title)}</div>` : ``}
+            ${titleHtml}
             <div class="body">${bodyHtml}</div>
 
             ${imgSrc ? `
@@ -801,7 +797,7 @@
       });
     });
 
-    // ✅ 예시 보기 토글
+    // 예시 보기 토글
     blocksEl.querySelectorAll('button[data-toggle="img"]').forEach(btn=>{
       btn.addEventListener("click", ()=>{
         const targetId = btn.dataset.target;
@@ -828,14 +824,14 @@
       text = await res.text();
     } catch (e){
       contentEl.innerHTML = `
-        <div class="panel hero">
-          <h1>데이터 로딩 실패</h1>
-          <p style="color:#b91c1c; font-weight:950;">${escapeHtml(e.message || "Failed to fetch")}</p>
-          <p style="margin:0; color:var(--muted); line-height:1.7;">
+        <div class="panel" style="padding:16px;">
+          <div style="font-weight:950; font-size:16px;">데이터 로딩 실패</div>
+          <div style="margin-top:8px; color:#b91c1c; font-weight:900;">${escapeHtml(e.message || "Failed to fetch")}</div>
+          <div style="margin-top:10px; color:var(--muted); line-height:1.7; font-size:14px;">
             1) 구글 시트가 ‘웹에 게시’ 상태인지<br/>
             2) 링크가 pub?output=csv 형태가 맞는지<br/>
             3) GitHub Pages(https://...)로 접속 중인지
-          </p>
+          </div>
         </div>
       `;
       return;
@@ -843,7 +839,7 @@
 
     const grid = parseCSV(text).filter(r => r.some(x => (x ?? "").toString().trim() !== ""));
     if(!grid.length){
-      contentEl.innerHTML = `<div class="panel hero"><h1>CSV가 비어있어요</h1><p>시트에 데이터가 있는지 확인해 주세요.</p></div>`;
+      contentEl.innerHTML = `<div class="panel" style="padding:16px;">CSV가 비어있어요.</div>`;
       return;
     }
 
@@ -860,11 +856,7 @@
     const iOrder = idx(header, "order");
 
     if (iSectionKey < 0 || iSectionTitle < 0){
-      contentEl.innerHTML = `
-        <div class="panel hero">
-          <h1>헤더가 맞지 않아요</h1>
-          <p>필수 헤더: sectionKey, sectionTitle</p>
-        </div>`;
+      contentEl.innerHTML = `<div class="panel" style="padding:16px;">헤더가 맞지 않아요 (sectionKey, sectionTitle 필요)</div>`;
       return;
     }
 
@@ -888,7 +880,7 @@
         title: (iTitle >= 0 ? (r[iTitle] ?? "").toString().trim() : ""),
         body: (iBody >= 0 ? (r[iBody] ?? "").toString().trim() : ""),
         imageUrl: (iImageUrl >= 0 ? (r[iImageUrl] ?? "").toString().trim() : ""),
-        orderNum: (iOrder >= 0 ? normalizeNumber(r[iOrder]) : 0), // 정렬용(표시X)
+        orderNum: (iOrder >= 0 ? normalizeNumber(r[iOrder]) : 0),
       });
     }
 
