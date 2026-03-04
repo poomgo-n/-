@@ -1,199 +1,593 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>입고 가이드</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>입고 가이드</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --line:#e6ebf3;
+      --primary:#2563eb;
+      --primary-weak:#e8f0ff;
+      --shadow: 0 8px 24px rgba(15, 23, 42, .08);
+      --radius: 16px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    header{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(245,247,251,.85);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 16px;
+    }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 240px;
+    }
+    .logo{
+      width:28px;height:28px;border-radius:8px;
+      background: linear-gradient(135deg, #60a5fa, #2563eb);
+      display:grid; place-items:center;
+      color:white; font-weight:900;
+      flex: 0 0 auto;
+      overflow:hidden;
+    }
+    .logo img{ width:100%; height:100%; object-fit:contain; background:white; }
+    .brand-title{
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+    .badge{
+      border:1px solid var(--line);
+      background: white;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space: nowrap;
+    }
+    .layout{
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 16px 28px;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+    }
 
-<style>
+    .panel{
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .sidebar{
+      position: sticky;
+      top: 74px;
+      align-self: start;
+      padding: 14px;
+    }
+    @media (max-width: 980px){
+      .sidebar{ position: static; top:auto; }
+    }
+    .sidebar h3{
+      margin: 6px 6px 10px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+    .menu-btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: #fff;
+      cursor:pointer;
+      text-align:left;
+    }
+    .menu-btn:hover{
+      border-color: #cfe0ff;
+      background: #fbfdff;
+    }
+    .menu-btn.active{
+      border-color: #b8d0ff;
+      background: var(--primary-weak);
+    }
+    .menu-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+    .menu-num{
+      width:22px;height:22px;border-radius:7px;
+      background: var(--primary);
+      color:white;
+      font-weight: 900;
+      font-size: 12px;
+      display:grid; place-items:center;
+      flex: 0 0 auto;
+    }
+    .menu-label{
+      font-weight: 800;
+      font-size: 14px;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .menu-count{
+      min-width: 22px;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: white;
+      border:1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      display:grid; place-items:center;
+      flex: 0 0 auto;
+    }
+    .sidebar-note{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      background: #f7f9ff;
+      border:1px dashed #d8e4ff;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
 
-body{
-font-family: Pretendard, Arial;
-margin:0;
-background:#f6f8fb;
-color:#222;
-}
+    .content{
+      padding: 14px;
+    }
+    .section-card{
+      padding: 16px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: white;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+    .section-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .section-title{
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: -0.4px;
+      margin:0;
+    }
+    .section-sub{
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
 
-header{
-background:white;
-padding:20px;
-border-bottom:1px solid #eee;
-font-size:22px;
-font-weight:700;
-}
+    .notice{
+      background: #fff5f5;
+      border:1px solid #ffd6d6;
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .item{
+      display:grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .dot{
+      width:22px;height:22px;border-radius:999px;
+      background:#111827;
+      color:white;
+      font-size: 12px;
+      font-weight: 900;
+      display:grid; place-items:center;
+      margin-top: 2px;
+    }
+    .item-title{
+      margin:0;
+      font-weight: 900;
+      font-size: 14px;
+      line-height:1.45;
+    }
+    .item-content{
+      margin: 6px 0 0;
+      color: #334155;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+    .img-wrap{
+      margin-top: 10px;
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: #f8fafc;
+    }
+    .img-wrap img{
+      width:100%;
+      height:auto;
+      display:block;
+      cursor: zoom-in;
+    }
 
-.container{
-display:flex;
-max-width:1400px;
-margin:auto;
-}
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
 
-.sidebar{
-width:260px;
-background:white;
-padding:20px;
-border-right:1px solid #eee;
-height:100vh;
-position:sticky;
-top:0;
-}
-
-.sidebar h3{
-margin-top:0;
-}
-
-.sidebar a{
-display:block;
-padding:8px 0;
-color:#444;
-text-decoration:none;
-}
-
-.sidebar a:hover{
-color:#0040D1;
-}
-
-.content{
-flex:1;
-padding:40px;
-}
-
-.section{
-margin-bottom:60px;
-}
-
-.section h2{
-margin-bottom:20px;
-border-bottom:2px solid #0040D1;
-padding-bottom:10px;
-}
-
-.card{
-background:white;
-border-radius:10px;
-padding:20px;
-margin-bottom:15px;
-box-shadow:0 3px 8px rgba(0,0,0,0.05);
-}
-
-.card h4{
-margin:0 0 10px;
-}
-
-.card img{
-width:100%;
-margin-top:10px;
-border-radius:8px;
-}
-
-@media(max-width:900px){
-.container{
-flex-direction:column;
-}
-
-.sidebar{
-width:100%;
-height:auto;
-border-right:none;
-border-bottom:1px solid #eee;
-}
-
-}
-
-</style>
+    /* image modal */
+    .modal{
+      position:fixed;
+      inset:0;
+      background: rgba(15,23,42,.65);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 999;
+      padding: 18px;
+    }
+    .modal.open{ display:flex; }
+    .modal-inner{
+      max-width: 1100px;
+      width:100%;
+      background:white;
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 20px 80px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.25);
+    }
+    .modal-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 10px 12px;
+      border-bottom:1px solid var(--line);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .modal-btn{
+      border:1px solid var(--line);
+      background: white;
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .modal-body img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-입고 가이드
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <!-- ✅ 로고: assets/logo.png를 repo에 올리면 자동 표시됨 -->
+        <div class="logo" title="logo">
+          <img src="assets/logo.png" alt="logo" onerror="this.remove()" />
+          <span id="logoFallback" style="display:none;">P</span>
+        </div>
+        <div class="brand-title">입고 가이드</div>
+      </div>
+      <div class="badge" id="updatedBadge">업데이트: -</div>
+    </div>
+  </div>
 </header>
 
-<div class="container">
+<div class="layout">
+  <aside class="panel sidebar">
+    <h3>목차</h3>
+    <div class="menu" id="menu"></div>
+    <div class="sidebar-note">
+      ※ 본 가이드는 운영 기준에 따라 변경될 수 있습니다.<br/>
+      ※ 내용 수정은 구글시트에서 관리됩니다.
+    </div>
+  </aside>
 
-<div class="sidebar" id="menu">
-<h3>목차</h3>
+  <main class="content" id="content"></main>
 </div>
 
-<div class="content" id="content"></div>
-
+<div class="modal" id="modal">
+  <div class="modal-inner">
+    <div class="modal-top">
+      <div id="modalLabel">이미지 보기</div>
+      <button class="modal-btn" id="modalClose">닫기</button>
+    </div>
+    <div class="modal-body">
+      <img id="modalImg" alt="preview" />
+    </div>
+  </div>
 </div>
 
 <script>
+  /**
+   * ✅ 탭(시트)별 CSV 링크를 여기에 넣어
+   * - label: 메뉴 이름
+   * - csv:   pub?gid=...&output=csv 링크
+   */
+  const SHEETS = [
+    { key: "flow",  label: "입고 과정", csv: "PUT_TAB1_CSV_URL_HERE" },
+    { key: "pack",  label: "상품(SKU) 포장 기준", csv: "PUT_TAB2_CSV_URL_HERE" },
+    { key: "barcode", label: "바코드 기준", csv: "PUT_TAB3_CSV_URL_HERE" },
+    // 필요하면 계속 추가
+    // { key:"outbox", label:"아웃박스 기준", csv:"PUT_CSV_URL" },
+    // { key:"fee", label:"부가비용 안내", csv:"PUT_CSV_URL" },
+  ];
 
-const sheetURL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQpBeQJu80tBSbiJyMdP9WSwOvbF-2Zk3NqmPKmoeG1hRir8GhULIpfahbdGfpkEYLKBcLt-0d6IFEf/pub?gid=0&single=true&output=csv"
+  const $ = (s) => document.querySelector(s);
+  const menu = $("#menu");
+  const content = $("#content");
+  const updatedBadge = $("#updatedBadge");
 
-async function loadGuide(){
+  // Robust CSV parser (quotes, commas, newlines)
+  function parseCSV(text){
+    const rows = [];
+    let row = [];
+    let field = "";
+    let i = 0;
+    let inQuotes = false;
 
-const res = await fetch(sheetURL)
-const text = await res.text()
+    while (i < text.length) {
+      const c = text[i];
+      const n = text[i+1];
 
-const rows = text.split("\n").map(r=>r.split(","))
+      if (c === '"' ) {
+        if (inQuotes && n === '"') { field += '"'; i += 2; continue; }
+        inQuotes = !inQuotes; i++; continue;
+      }
 
-const header = rows.shift()
+      if (!inQuotes && c === ",") { row.push(field); field=""; i++; continue; }
+      if (!inQuotes && (c === "\n" || c === "\r")) {
+        if (c === "\r" && n === "\n") i++;
+        row.push(field);
+        rows.push(row);
+        row = [];
+        field = "";
+        i++;
+        continue;
+      }
 
-const sectionIndex = header.indexOf("section")
-const titleIndex = header.indexOf("title")
-const contentIndex = header.indexOf("content")
-const imageIndex = header.indexOf("image")
+      field += c;
+      i++;
+    }
+    // last
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    // trim BOM
+    if (rows[0] && rows[0][0]) rows[0][0] = rows[0][0].replace(/^\uFEFF/, "");
+    return rows;
+  }
 
-const data={}
+  function idxOf(header, name){
+    return header.findIndex(h => (h || "").trim().toLowerCase() === name);
+  }
 
-rows.forEach(r=>{
+  async function fetchTab(tab){
+    const res = await fetch(tab.csv, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    const grid = parseCSV(text).filter(r => r.some(x => (x ?? "").trim() !== ""));
+    if (!grid.length) return { header: [], items: [] };
 
-const section=r[sectionIndex]
+    const header = grid[0].map(h => (h ?? "").trim());
+    const body = grid.slice(1);
 
-if(!data[section]) data[section]=[]
+    const iNo = idxOf(header.map(x=>x.toLowerCase()), "no");
+    const iTitle = idxOf(header.map(x=>x.toLowerCase()), "title");
+    const iContent = idxOf(header.map(x=>x.toLowerCase()), "content");
+    const iImage = idxOf(header.map(x=>x.toLowerCase()), "image");
 
-data[section].push({
-title:r[titleIndex],
-content:r[contentIndex],
-image:r[imageIndex]
-})
+    const items = body.map((r, k) => ({
+      no: iNo >= 0 ? (r[iNo] ?? "").trim() : String(k+1),
+      title: iTitle >= 0 ? (r[iTitle] ?? "").trim() : "",
+      content: iContent >= 0 ? (r[iContent] ?? "").trim() : "",
+      image: iImage >= 0 ? (r[iImage] ?? "").trim() : ""
+    })).filter(x => x.title || x.content || x.image);
 
-})
+    return { header, items };
+  }
 
-render(data)
+  function setActive(key){
+    [...menu.querySelectorAll(".menu-btn")].forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.key === key);
+    });
+  }
 
-}
+  function renderTab(tab, data){
+    content.innerHTML = "";
 
-function render(data){
+    // 상단 "입고 전 꼭 확인해주세요!" 같은 안내 박스는
+    // 시트에서 첫 번째 항목을 notice로 쓸 수도 있는데,
+    // 일단은 "카테고리 상단 카드 + 안에 항목 리스트" 형태로 통일.
+    const card = document.createElement("div");
+    card.className = "section-card";
 
-const menu=document.getElementById("menu")
-const content=document.getElementById("content")
+    card.innerHTML = `
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">${tab.label}</h2>
+          <p class="section-sub">구글 시트에서 내용을 수정하면 이 페이지에 반영됩니다.</p>
+        </div>
+      </div>
+      <div class="notice" id="notice"></div>
+      <div class="grid-2" id="list"></div>
+    `;
+    content.appendChild(card);
 
-Object.keys(data).forEach(section=>{
+    const notice = card.querySelector("#notice");
+    const list = card.querySelector("#list");
 
-const id=section.replace(/\s/g,"")
+    // “notice 스타일”은 기본으로 사용하되, 항목이 많으면 카드 리스트처럼 보이게끔 구성
+    if (data.items.length === 0) {
+      notice.innerHTML = `<div style="color:var(--muted); font-size:13px;">표시할 데이터가 없습니다. (시트 헤더: no/title/content/image 확인)</div>`;
+      list.innerHTML = "";
+      return;
+    }
 
-menu.innerHTML+=`<a href="#${id}">${section}</a>`
+    // 첫 섹션은 안내 박스에 몰아넣고, 나머지는 리스트로
+    // (원하면 전부 리스트로도 바꿀 수 있어)
+    const first = data.items.slice(0, 6); // 상단 요약 느낌
+    const rest = data.items.slice(6);
 
-let html=`<div class="section" id="${id}">
-<h2>${section}</h2>`
+    notice.innerHTML = first.map((it, idx) => `
+      <div class="item">
+        <div class="dot">${it.no || (idx+1)}</div>
+        <div>
+          <p class="item-title">${escapeHtml(it.title)}</p>
+          ${it.content ? `<p class="item-content">${escapeHtml(it.content)}</p>` : ""}
+          ${it.image ? `
+            <div class="img-wrap">
+              <img src="${escapeAttr(it.image)}" alt="image" data-img="${escapeAttr(it.image)}" />
+            </div>` : ""}
+        </div>
+      </div>
+    `).join("");
 
-data[section].forEach(item=>{
+    list.innerHTML = rest.map((it, idx) => `
+      <div class="section-card" style="box-shadow:none; margin:0; border-radius:14px;">
+        <div class="item" style="margin:0;">
+          <div class="dot">${it.no || (idx+7)}</div>
+          <div>
+            <p class="item-title">${escapeHtml(it.title)}</p>
+            ${it.content ? `<p class="item-content">${escapeHtml(it.content)}</p>` : ""}
+            ${it.image ? `
+              <div class="img-wrap">
+                <img src="${escapeAttr(it.image)}" alt="image" data-img="${escapeAttr(it.image)}" />
+              </div>` : ""}
+          </div>
+        </div>
+      </div>
+    `).join("");
 
-html+=`
-<div class="card">
-<h4>${item.title}</h4>
-<p>${item.content}</p>
-${item.image?`<img src="${item.image}">`:""}
-</div>
-`
+    // image zoom
+    content.querySelectorAll("img[data-img]").forEach(img => {
+      img.addEventListener("click", () => openModal(img.dataset.img));
+    });
+  }
 
-})
+  function escapeHtml(s){
+    return (s ?? "").replace(/[&<>"']/g, (m) => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+    }[m]));
+  }
+  function escapeAttr(s){ return escapeHtml(s).replace(/\s/g, "%20"); }
 
-html+=`</div>`
+  // Modal
+  const modal = $("#modal");
+  const modalImg = $("#modalImg");
+  const modalClose = $("#modalClose");
+  const modalLabel = $("#modalLabel");
+  function openModal(src){
+    modalImg.src = src;
+    modalLabel.textContent = "이미지 보기";
+    modal.classList.add("open");
+  }
+  function closeModal(){ modal.classList.remove("open"); }
+  modalClose.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
-content.innerHTML+=html
+  async function init(){
+    updatedBadge.textContent = `업데이트: ${new Date().toLocaleString("ko-KR")}`;
 
-})
+    // Build menu with counts (각 탭 row 수)
+    menu.innerHTML = "";
+    const tabData = {};
 
-}
+    for (let i = 0; i < SHEETS.length; i++){
+      const tab = SHEETS[i];
 
-loadGuide()
+      // 메뉴 먼저 그려두고
+      const btn = document.createElement("button");
+      btn.className = "menu-btn";
+      btn.dataset.key = tab.key;
+      btn.innerHTML = `
+        <div class="menu-left">
+          <div class="menu-num">${i+1}</div>
+          <div class="menu-label">${tab.label}</div>
+        </div>
+        <div class="menu-count" id="count-${tab.key}">-</div>
+      `;
+      menu.appendChild(btn);
 
+      // 데이터 로드
+      try{
+        const data = await fetchTab(tab);
+        tabData[tab.key] = data;
+        const c = data.items.length;
+        const countEl = document.getElementById(`count-${tab.key}`);
+        if (countEl) countEl.textContent = String(c);
+      } catch(e){
+        tabData[tab.key] = { header: [], items: [] };
+        const countEl = document.getElementById(`count-${tab.key}`);
+        if (countEl) countEl.textContent = "!";
+      }
+
+      // 클릭 핸들러
+      btn.addEventListener("click", () => {
+        setActive(tab.key);
+        renderTab(tab, tabData[tab.key]);
+      });
+    }
+
+    // 첫 탭 자동 오픈
+    const first = SHEETS[0];
+    setActive(first.key);
+    renderTab(first, tabData[first.key] || {header:[], items:[]});
+  }
+
+  init();
 </script>
 
 </body>
