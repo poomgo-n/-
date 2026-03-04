@@ -609,42 +609,62 @@
     return { steps, customer, poomgo };
   }
 
-  function renderProcessBlocks(s){
-    return s.replace(/\[\[process\]\]([\s\S]*?)\[\[\/process\]\]/g, (_, content)=>{
-      const p = parseProcessBlock(content);
-      if(!p) return "";
+function renderProcessBlocksRaw(raw){
+  // raw(escape 전 원문)에서 [[process]]를 찾아 UI HTML로 바꿔 넣는다.
+  return raw.replace(/\[\[process\]\]([\s\S]*?)\[\[\/process\]\]/g, (_, content)=>{
+    const lines = content.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return "";
 
-      const stepsHtml = p.steps.map(st=>`
-        <span class="step-pill"><span class="step-dot"></span>${escapeHtml(st)}</span>
-      `).join("");
+    // 1) steps line
+    const first = lines[0]
+      .replace(/→/g, ">")
+      .replace(/&gt;/g, ">") // 혹시 이미 들어온 경우도 대비
+      .replace(/\s*-\s*/g, ">");
 
-      const customerBody = p.customer ? escapeHtml(p.customer).replace(/,\s*/g, "\n") : "—";
-      const poomgoBody = p.poomgo ? escapeHtml(p.poomgo).replace(/,\s*/g, "\n") : "—";
+    const steps = first.split(">").map(x=>x.trim()).filter(Boolean);
 
-      return `
-        <div class="process">
-          <div class="process-steps">${stepsHtml}</div>
-          <div class="process-divider"></div>
-          <div class="process-roles">
-            <div class="role-card">
-              <div class="role-head">
-                <div class="role-title">고객사 진행</div>
-                <div class="role-badge">SELLER</div>
-              </div>
-              <div class="role-body">${customerBody}</div>
+    // 2) roles
+    let customer = "";
+    let poomgo = "";
+    for (let i=1;i<lines.length;i++){
+      const line = lines[i];
+      const m1 = line.match(/^고객사\s*진행\s*:\s*(.*)$/i);
+      const m2 = line.match(/^품고\s*진행\s*:\s*(.*)$/i);
+      if (m1) customer = m1[1].trim();
+      else if (m2) poomgo = m2[1].trim();
+    }
+
+    const stepsHtml = steps.map(st=>`
+      <span class="step-pill"><span class="step-dot"></span>${escapeHtml(st)}</span>
+    `).join("");
+
+    const customerBody = customer ? escapeHtml(customer).replace(/,\s*/g, "\n") : "—";
+    const poomgoBody = poomgo ? escapeHtml(poomgo).replace(/,\s*/g, "\n") : "—";
+
+    return `
+      <div class="process">
+        <div class="process-steps">${stepsHtml}</div>
+        <div class="process-divider"></div>
+        <div class="process-roles">
+          <div class="role-card">
+            <div class="role-head">
+              <div class="role-title">고객사 진행</div>
+              <div class="role-badge">SELLER</div>
             </div>
-            <div class="role-card">
-              <div class="role-head">
-                <div class="role-title">품고 진행</div>
-                <div class="role-badge">POOMGO</div>
-              </div>
-              <div class="role-body">${poomgoBody}</div>
+            <div class="role-body">${customerBody}</div>
+          </div>
+          <div class="role-card">
+            <div class="role-head">
+              <div class="role-title">품고 진행</div>
+              <div class="role-badge">POOMGO</div>
             </div>
+            <div class="role-body">${poomgoBody}</div>
           </div>
         </div>
-      `;
-    });
-  }
+      </div>
+    `;
+  });
+}
 
   function renderPlain(s){
     const lines = s.split(/\r?\n/);
@@ -720,24 +740,27 @@
     return `<div class="seg-list">${html}</div>`;
   }
 
-  function renderBody(raw){
-    if(!raw) return "";
-    let s = escapeHtml(raw);
+function renderBody(raw){
+  if(!raw) return "";
 
-    // ✅ process first
-    s = renderProcessBlocks(s);
+  // ✅ 1) process는 escape 전에 먼저 UI로 변환
+  let raw2 = renderProcessBlocksRaw(raw);
 
-    // pre / table
-    s = renderPreBlocks(s);
-    s = renderTableBlocks(s);
+  // ✅ 2) 이제 나머지 텍스트를 안전하게 escape
+  let s = escapeHtml(raw2);
 
-    // bold
-    s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  // ✅ 3) pre/table은 escape된 상태에서 변환해도 OK
+  s = renderPreBlocks(s);
+  s = renderTableBlocks(s);
 
-    const seg = renderSegmented(s);
-    if (seg) return seg;
-    return renderPlain(s);
-  }
+  // bold
+  s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+  const seg = renderSegmented(s);
+  if (seg) return seg;
+
+  return renderPlain(s);
+}
 
   let SECTIONS = [];
   let ACTIVE_KEY = null;
@@ -1021,3 +1044,4 @@
 </script>
 </body>
 </html>
+
