@@ -48,21 +48,9 @@
     .wrap{max-width:1280px; margin:0 auto; padding:14px 16px;}
     .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px;}
     .brand{display:flex; align-items:center; gap:12px; min-width:260px;}
-
-    .brand-logo{
-      height:32px;
-      width:auto;
-      display:block;
-      object-fit:contain;
-    }
+    .brand-logo{height:32px;width:auto;display:block;object-fit:contain;}
     @media (max-width:520px){ .brand-logo{height:28px;} }
-
-    .brand-title{
-      font-weight:950;
-      letter-spacing:-.35px;
-      font-size:18px;
-      line-height:1.1;
-    }
+    .brand-title{font-weight:950; letter-spacing:-.35px; font-size:18px; line-height:1.1;}
 
     .badge{
       border:1px solid var(--line);
@@ -122,7 +110,7 @@
     .menu-left{display:flex; align-items:center; gap:10px; min-width:0;}
     .menu-label{
       font-weight:950;
-      font-size:15px;      /* ✅ 목차 글씨 키움 */
+      font-size:15px;
       overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
       letter-spacing:-.2px;
     }
@@ -132,9 +120,6 @@
       color:var(--muted);font-size:12px;
       display:grid; place-items:center;
       flex:0 0 auto;
-    }
-    .sidebar-note{
-      display:none; /* ✅ "구글 시트 관리" 류 안내 전부 숨김 */
     }
 
     /* Content */
@@ -152,25 +137,25 @@
     }
     .toolbar-left{display:flex; gap:10px; flex-wrap:wrap; align-items:center; width:100%;}
     .input{
-      display:flex; align-items:center; gap:8px;
+      display:flex; align-items:center; gap:10px;
       border:1px solid var(--line);
       background:#fff;
       border-radius:14px;
-      padding:12px 14px;       /* ✅ 더 큼 */
+      padding:12px 14px;
       min-width: 280px;
       flex: 1 1 520px;
     }
     .input input{
       border:none; outline:none; width:100%;
-      font:inherit; font-size:15px;   /* ✅ 검색 글씨 키움 */
+      font:inherit; font-size:15px;
       background:transparent;
     }
     .pill{
       border:1px solid var(--line);
       background:#fff;
-      padding:10px 12px;       /* ✅ 더 큼 */
+      padding:10px 12px;
       border-radius:999px;
-      font-size:13px;          /* ✅ 더 큼 */
+      font-size:13px;
       color:var(--muted);
       display:flex; align-items:center; gap:8px;
       cursor:pointer;
@@ -186,32 +171,32 @@
     .btn{
       border:1px solid var(--line);
       background:#fff;
-      padding:12px 14px;      /* ✅ 더 큼 */
+      padding:12px 14px;
       border-radius:14px;
       cursor:pointer;
       font-weight:900;
-      font-size:14px;         /* ✅ 더 큼 */
+      font-size:14px;
       color:#0f172a;
       white-space:nowrap;
     }
     .btn:hover{background:#fbfdff; border-color:#cfe0ff;}
 
+    /* Blocks */
     .block{
       border:1px solid var(--line);
-      border-radius:16px;
+      border-radius:18px;
       background:#fff;
-      box-shadow:0 8px 24px rgba(15,23,42,.06);
-      padding:18px;           /* ✅ 여백 조금 증가 */
+      box-shadow:0 10px 26px rgba(15,23,42,.06);
+      padding:18px;
       margin-bottom:14px;
     }
     .block.callout-red{background:var(--danger-bg); border-color:var(--danger-line);}
     .block.callout-yellow{background:var(--warn-bg); border-color:var(--warn-line);}
     .block.callout-green{background:var(--ok-bg); border-color:var(--ok-line);}
 
-    /* ✅ 블록 제목(가독성) */
     .block-title{
-      margin:0 0 10px;
-      font-size:17px;        /* ✅ 더 큼 */
+      margin:0 0 12px;
+      font-size:17px;
       font-weight:950;
       letter-spacing:-.25px;
       line-height:1.35;
@@ -219,8 +204,6 @@
       align-items:center;
       gap:10px;
     }
-
-    /* ✅ 검은 숫자칩 */
     .title-chip{
       width:26px; height:26px;
       border-radius:9px;
@@ -234,24 +217,25 @@
     }
 
     .body{
-      font-size:15px;       /* ✅ 본문 크게 */
+      font-size:15px;
       color:#334155;
-      line-height:1.85;     /* ✅ 줄간격 증가 */
+      line-height:1.85;
     }
     .body strong{color:#0f172a;}
     .body ul{margin:10px 0 10px 20px;}
     .body li{margin:6px 0;}
 
+    /* [[pre]] */
     .body pre{
       white-space:pre;
       font-family:"Pretendard Variable","Pretendard",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      font-size:14px;       /* ✅ pre도 조금 키움 */
+      font-size:14px;
       line-height:1.75;
       margin:12px 0;
       padding:12px 14px;
       border:1px solid rgba(15,23,42,.10);
       border-radius:14px;
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.8);
       overflow:auto;
     }
 
@@ -297,7 +281,7 @@
     table.md th, table.md td{
       padding:12px 12px;
       border-bottom:1px solid var(--line);
-      font-size:14px;      /* ✅ 표 글씨 키움 */
+      font-size:14px;
       vertical-align:top;
     }
     table.md th{
@@ -308,7 +292,85 @@
     }
     table.md tr:last-child td{border-bottom:none;}
 
-    /* 예시 보기 토글 */
+    /* ✅ A안: Process UI */
+    .process{
+      margin:12px 0 4px;
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:16px;
+      background:rgba(255,255,255,.85);
+      padding:14px;
+    }
+    .process-steps{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .step-pill{
+      border:1px solid rgba(37,99,235,.25);
+      background:rgba(37,99,235,.06);
+      color:#1e3a8a;
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:-.2px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .step-dot{
+      width:8px; height:8px; border-radius:99px;
+      background:var(--primary);
+      display:inline-block;
+    }
+    .process-divider{
+      height:1px;
+      background:rgba(15,23,42,.08);
+      margin:12px 0;
+    }
+    .process-roles{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width:640px){ .process-roles{grid-template-columns:1fr;} }
+    .role-card{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:14px;
+      background:#fff;
+      padding:12px;
+    }
+    .role-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .role-title{
+      font-weight:950;
+      font-size:14px;
+      letter-spacing:-.2px;
+    }
+    .role-badge{
+      font-size:12px;
+      font-weight:900;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,23,42,.10);
+      color:var(--muted);
+      background:#fff;
+      white-space:nowrap;
+    }
+    .role-body{
+      font-size:14px;
+      color:#334155;
+      line-height:1.75;
+      white-space:pre-line;
+    }
+
+    /* Example toggle */
     .img-toggle-row{
       margin-top:14px;
       display:flex;
@@ -327,10 +389,7 @@
       color:#0f172a;
     }
     .img-toggle-btn:hover{background:#fbfdff; border-color:#cfe0ff;}
-    .img-caption{
-      font-size:13px;
-      color:var(--muted);
-    }
+    .img-caption{font-size:13px;color:var(--muted);}
 
     .img-wrap{
       margin-top:12px;
@@ -341,12 +400,7 @@
       display:none;
     }
     .img-wrap.open{display:block;}
-    .img-wrap img{
-      width:100%;
-      height:auto;
-      display:block;
-      cursor:zoom-in;
-    }
+    .img-wrap img{width:100%;height:auto;display:block;cursor:zoom-in;}
 
     /* Modal */
     .modal{
@@ -381,12 +435,7 @@
     }
     .modal-body img{width:100%;height:auto;display:block;}
 
-    .empty{
-      padding:18px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-    }
+    .empty{padding:18px;color:var(--muted);font-size:14px;line-height:1.7;}
   </style>
 </head>
 
@@ -407,13 +456,10 @@
   <aside class="panel sidebar">
     <h3>목차</h3>
     <div class="menu" id="menu"></div>
-    <!-- ✅ 안내문구 삭제 -->
   </aside>
 
   <main id="content">
-    <div class="panel" style="padding:16px;">
-      로딩 중…
-    </div>
+    <div class="panel" style="padding:16px;">로딩 중…</div>
   </main>
 </div>
 
@@ -506,10 +552,9 @@
     return "";
   }
 
-  // ✅ title 맨 앞 숫자(1,2,3...) 추출해서 칩으로 만들기
+  // title leading number -> chip
   function splitLeadingNumberTitle(title){
     const t = (title || "").trim();
-    // "1 ...", "1. ...", "1) ...", "01 ..." 등
     const m = t.match(/^(\d{1,3})\s*[.)]?\s*(.*)$/);
     if(!m) return { num:null, text:t };
     const num = m[1];
@@ -517,9 +562,12 @@
     return { num, text };
   }
 
+  // [[pre]]
   function renderPreBlocks(s){
     return s.replace(/\[\[pre\]\]([\s\S]*?)\[\[\/pre\]\]/g, (_,content)=> `<pre>${content}</pre>`);
   }
+
+  // [[table]]
   function renderTableBlocks(s){
     return s.replace(/\[\[table\]\]([\s\S]*?)\[\[\/table\]\]/g, (_, tableText)=>{
       const lines = tableText.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
@@ -533,6 +581,71 @@
     });
   }
 
+  // ✅ A안: [[process]] parser & renderer
+  function parseProcessBlock(content){
+    const lines = content.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+    if(!lines.length) return null;
+
+    const first = lines[0];
+    // separators: >, →, -, |
+    const steps = first
+      .replace(/→/g, ">")
+      .replace(/-/g, ">")
+      .split(">")
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+    let customer = "";
+    let poomgo = "";
+
+    for (let i=1;i<lines.length;i++){
+      const line = lines[i];
+      const m1 = line.match(/^고객사\s*진행\s*:\s*(.*)$/i);
+      const m2 = line.match(/^품고\s*진행\s*:\s*(.*)$/i);
+      if (m1) customer = m1[1].trim();
+      else if (m2) poomgo = m2[1].trim();
+    }
+
+    return { steps, customer, poomgo };
+  }
+
+  function renderProcessBlocks(s){
+    return s.replace(/\[\[process\]\]([\s\S]*?)\[\[\/process\]\]/g, (_, content)=>{
+      const p = parseProcessBlock(content);
+      if(!p) return "";
+
+      const stepsHtml = p.steps.map(st=>`
+        <span class="step-pill"><span class="step-dot"></span>${escapeHtml(st)}</span>
+      `).join("");
+
+      const customerBody = p.customer ? escapeHtml(p.customer).replace(/,\s*/g, "\n") : "—";
+      const poomgoBody = p.poomgo ? escapeHtml(p.poomgo).replace(/,\s*/g, "\n") : "—";
+
+      return `
+        <div class="process">
+          <div class="process-steps">${stepsHtml}</div>
+          <div class="process-divider"></div>
+          <div class="process-roles">
+            <div class="role-card">
+              <div class="role-head">
+                <div class="role-title">고객사 진행</div>
+                <div class="role-badge">SELLER</div>
+              </div>
+              <div class="role-body">${customerBody}</div>
+            </div>
+            <div class="role-card">
+              <div class="role-head">
+                <div class="role-title">품고 진행</div>
+                <div class="role-badge">POOMGO</div>
+              </div>
+              <div class="role-body">${poomgoBody}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
   function renderPlain(s){
     const lines = s.split(/\r?\n/);
     let out = "";
@@ -541,7 +654,8 @@
     for (const line of lines){
       const t = line.trim();
 
-      if (t.includes("<table") || t.includes("<pre")){
+      // already html blocks
+      if (t.includes("<table") || t.includes("<pre") || t.includes('class="process"')){
         if (inList){ out += "</ul>"; inList=false; }
         out += t;
         continue;
@@ -564,6 +678,7 @@
     return out;
   }
 
+  // segmented (➊➋➌...)
   function renderSegmented(s){
     const splitRegex = /(?=(➊|➋|➌|➍|➎|➏|➐|➑|➒|➓)\s*)/g;
     const chunks = s.split(splitRegex).map(x => (x ?? "").trim()).filter(Boolean);
@@ -608,9 +723,17 @@
   function renderBody(raw){
     if(!raw) return "";
     let s = escapeHtml(raw);
+
+    // ✅ process first
+    s = renderProcessBlocks(s);
+
+    // pre / table
     s = renderPreBlocks(s);
     s = renderTableBlocks(s);
+
+    // bold
     s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
     const seg = renderSegmented(s);
     if (seg) return seg;
     return renderPlain(s);
@@ -618,7 +741,7 @@
 
   let SECTIONS = [];
   let ACTIVE_KEY = null;
-  let SEARCH_ALL = false; // 기본: 현재 섹션만
+  let SEARCH_ALL = false;
   let QUERY = "";
 
   function normalizeNumber(x){
@@ -702,7 +825,7 @@
 
     const matches = getFilteredItems();
 
-    // ✅ 섹션 제목(오른쪽에 제목 한 번 더 나오는 것) 제거: hero 카드 자체를 없앰
+    // ✅ 섹션 제목 카드(중복 느낌) 제거
     contentEl.innerHTML = `
       ${renderToolbar(matches.length)}
       <div id="blocks"></div>
@@ -738,7 +861,6 @@
       const sec = v.section;
       const items = v.items;
 
-      // 전체 보기일 때만 섹션 구분 헤더 출력(제목 중복 느낌 줄이기 위해 작게)
       if (SEARCH_ALL){
         html += `
           <div class="panel" style="padding:14px 16px; margin-bottom:12px; box-shadow:none;">
@@ -754,7 +876,6 @@
         const imgSrc = driveToImg(it.imageUrl);
         const bodyHtml = renderBody(it.body || "");
 
-        // ✅ title 앞 숫자 -> 칩으로 변환
         const sp = splitLeadingNumberTitle(it.title || "");
         const titleHtml = it.title ? `
           <div class="block-title">
@@ -788,7 +909,7 @@
 
     blocksEl.innerHTML = html;
 
-    // 이미지 클릭 확대 + 에러 fallback
+    // image modal + fallback
     blocksEl.querySelectorAll("img[data-original]").forEach(img=>{
       img.addEventListener("click", ()=> openModal(img.src));
       img.addEventListener("error", ()=>{
@@ -797,7 +918,7 @@
       });
     });
 
-    // 예시 보기 토글
+    // example toggle
     blocksEl.querySelectorAll('button[data-toggle="img"]').forEach(btn=>{
       btn.addEventListener("click", ()=>{
         const targetId = btn.dataset.target;
@@ -827,11 +948,6 @@
         <div class="panel" style="padding:16px;">
           <div style="font-weight:950; font-size:16px;">데이터 로딩 실패</div>
           <div style="margin-top:8px; color:#b91c1c; font-weight:900;">${escapeHtml(e.message || "Failed to fetch")}</div>
-          <div style="margin-top:10px; color:var(--muted); line-height:1.7; font-size:14px;">
-            1) 구글 시트가 ‘웹에 게시’ 상태인지<br/>
-            2) 링크가 pub?output=csv 형태가 맞는지<br/>
-            3) GitHub Pages(https://...)로 접속 중인지
-          </div>
         </div>
       `;
       return;
