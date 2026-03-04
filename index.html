@@ -284,10 +284,6 @@
       font-size:14px;
       vertical-align:top;
     }
-    table.md td{
-      /* ✅ 셀 안 줄바꿈 표시(실제 개행 있을 때도 살아남게) */
-      white-space:pre-line;
-    }
     table.md th{
       background:rgba(37,99,235,.06);
       color:#0f172a;
@@ -579,22 +575,8 @@
       if (rows.length < 2) return "";
       const head = rows[0];
       const body = rows.slice(1);
-
       const ths = head.map(h=>`<th>${escapeHtml(h)}</th>`).join("");
-
-      // ✅ 핵심: 셀 텍스트의 "\n" (백슬래시+n)을 줄바꿈으로 변환
-      const trs = body.map(r=>{
-        const tds = r.map(c=>{
-          let safe = escapeHtml(c);
-          // "\\n" -> 실제 개행으로
-          safe = safe.replace(/\\n/g, "\n");
-          // 실제 개행 -> <br>로 (HTML에서 줄바꿈 되게)
-          safe = safe.replace(/\n/g, "<br>");
-          return `<td>${safe}</td>`;
-        }).join("");
-        return `<tr>${tds}</tr>`;
-      }).join("");
-
+      const trs = body.map(r=>`<tr>${r.map(c=>`<td>${escapeHtml(c)}</td>`).join("")}</tr>`).join("");
       return `<table class="md"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
     });
   }
