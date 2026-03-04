@@ -123,13 +123,9 @@
     .menu-btn:hover{border-color:#cfe0ff; background:#fbfdff;}
     .menu-btn.active{border-color:#b8d0ff; background:var(--primary-weak);}
     .menu-left{display:flex; align-items:center; gap:10px; min-width:0;}
-    .menu-num{
-      width:22px;height:22px;border-radius:7px;
-      background:var(--primary); color:#fff;
-      font-weight:950; font-size:12px;
-      display:grid; place-items:center;
-      flex:0 0 auto;
-    }
+
+    /* ✅ (중복 숫자 원인) menu-num 제거했으니 CSS도 필요 없음. 남겨도 무해하지만 깔끔하게 삭제. */
+
     .menu-label{
       font-weight:950; font-size:14px;
       overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
@@ -637,23 +633,26 @@
 
   function buildMenu(){
     menuEl.innerHTML = "";
-    SECTIONS.forEach((sec, idx)=>{
+    SECTIONS.forEach((sec)=>{
       const btn = document.createElement("button");
       btn.className = "menu-btn";
       btn.dataset.key = sec.sectionKey;
+
+      // ✅ 중복 숫자 제거: 파란 번호칩(menu-num) 삭제
       btn.innerHTML = `
         <div class="menu-left">
-          <div class="menu-num">${idx+1}</div>
           <div class="menu-label">${escapeHtml(sec.sectionTitle)}</div>
         </div>
         <div class="menu-count">${sec.items.length}</div>
       `;
+
       btn.addEventListener("click", ()=>{
-        SEARCH_ALL = false;           // ✅ 목차 클릭하면 해당 섹션만
+        SEARCH_ALL = false;
         setActive(sec.sectionKey);
         render();
         if (window.innerWidth <= 980) window.scrollTo({top:0, behavior:"smooth"});
       });
+
       menuEl.appendChild(btn);
     });
   }
@@ -914,4 +913,3 @@
 </script>
 </body>
 </html>
-
