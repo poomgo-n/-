@@ -47,18 +47,25 @@
     }
     .wrap{max-width:1280px; margin:0 auto; padding:14px 16px;}
     .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px;}
-    .brand{display:flex; align-items:center; gap:10px; min-width:240px;}
-    .logo{
-      width:34px;height:34px;border-radius:10px;
-      background:linear-gradient(135deg,#60a5fa,#2563eb);
-      display:grid; place-items:center;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.7);
-      box-shadow:0 8px 20px rgba(37,99,235,.15);
-      flex:0 0 auto;
+    .brand{display:flex; align-items:center; gap:12px; min-width:260px;}
+
+    /* 로고: 이미지 자체만 크게 */
+    .brand-logo{
+      height:54px; width:auto;
+      display:block;
+      object-fit:contain;
     }
-    .logo img{width:100%;height:100%;object-fit:contain;background:#fff}
-    .brand-title{font-weight:950; letter-spacing:-.35px; font-size:18px;}
+    @media (max-width:520px){
+      .brand-logo{height:44px;}
+    }
+
+    .brand-title{
+      font-weight:950;
+      letter-spacing:-.35px;
+      font-size:18px;
+      line-height:1.1;
+    }
+
     .badge{
       border:1px solid var(--line);
       background:#fff;
@@ -147,22 +154,6 @@
 
     /* Content */
     main{padding:14px;}
-    .hero{
-      padding:16px;
-      margin-bottom:14px;
-    }
-    .hero h1{
-      margin:0;
-      font-size:20px;
-      font-weight:950;
-      letter-spacing:-.45px;
-    }
-    .hero p{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
-    }
 
     .toolbar{
       display:flex;
@@ -173,7 +164,7 @@
       align-items:center;
       justify-content:space-between;
     }
-    .toolbar-left{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    .toolbar-left{display:flex; gap:10px; flex-wrap:wrap; align-items:center; width:100%;}
     .input{
       display:flex; align-items:center; gap:8px;
       border:1px solid var(--line);
@@ -181,7 +172,7 @@
       border-radius:14px;
       padding:10px 12px;
       min-width: 280px;
-      flex: 1 1 320px;
+      flex: 1 1 520px;
     }
     .input input{
       border:none; outline:none; width:100%;
@@ -198,6 +189,7 @@
       display:flex; align-items:center; gap:8px;
       cursor:pointer;
       user-select:none;
+      white-space:nowrap;
     }
     .pill.active{
       border-color:#b8d0ff;
@@ -213,8 +205,26 @@
       cursor:pointer;
       font-weight:900;
       color:#0f172a;
+      white-space:nowrap;
     }
     .btn:hover{background:#fbfdff; border-color:#cfe0ff;}
+
+    .hero{
+      padding:16px;
+      margin-bottom:14px;
+    }
+    .hero h1{
+      margin:0;
+      font-size:20px;
+      font-weight:950;
+      letter-spacing:-.45px;
+    }
+    .hero p{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
 
     .block{
       border:1px solid var(--line);
@@ -235,18 +245,6 @@
       letter-spacing:-.25px;
       line-height:1.35;
     }
-    .meta-row{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-bottom:10px;
-    }
-    .meta{
-      font-size:12px;
-      color:var(--muted);
-      background:rgba(255,255,255,.65);
-      border:1px solid rgba(15,23,42,.08);
-      padding:6px 10px;
-      border-radius:999px;
-    }
 
     .body{
       font-size:13.5px;
@@ -256,7 +254,20 @@
     .body strong{color:#0f172a;}
     .body ul{margin:8px 0 8px 18px;}
     .body li{margin:4px 0;}
-    .hr{height:1px;background:rgba(15,23,42,.10);margin:12px 0;}
+
+    /* pre 출력: 공백/정렬 유지 */
+    .body pre{
+      white-space:pre;
+      font-family:"Pretendard Variable","Pretendard",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:13.5px;
+      line-height:1.7;
+      margin:10px 0;
+      padding:12px 14px;
+      border:1px solid rgba(15,23,42,.10);
+      border-radius:14px;
+      background:rgba(255,255,255,.7);
+      overflow:auto;
+    }
 
     .img-wrap{
       margin-top:12px;
@@ -357,6 +368,7 @@
       color:#0f172a;
     }
     .modal-body img{width:100%;height:auto;display:block;}
+
     .empty{
       padding:18px;
       color:var(--muted);
@@ -371,10 +383,7 @@
   <div class="wrap">
     <div class="topbar">
       <div class="brand">
-        <div class="logo" title="logo">
-          <!-- ✅ 여기: repo에 assets/logo.png 올리면 자동 표시 -->
-          <img src="assets/logo.png" alt="logo" onerror="this.remove()">
-        </div>
+        <img class="brand-logo" src="assets/logo.png" alt="logo" onerror="this.style.display='none'">
         <div class="brand-title">입고 가이드</div>
       </div>
       <div class="badge" id="updatedBadge">업데이트: -</div>
@@ -402,7 +411,7 @@
 <div class="modal" id="modal">
   <div class="modal-inner">
     <div class="modal-top">
-      <div id="modalLabel">이미지 보기</div>
+      <div>이미지 보기</div>
       <button class="modal-btn" id="modalClose">닫기</button>
     </div>
     <div class="modal-body">
@@ -412,15 +421,9 @@
 </div>
 
 <script>
-  /***********************
-   * ✅ 너 CSV URL (이미 세팅)
-   ***********************/
   const CSV_URL =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQpBeQJu80tBSbiJyMdP9WSwOvbF-2Zk3NqmPKmoeG1hRir8GhULIpfahbdGfpkEYLKBcLt-0d6IFEf/pub?gid=0&single=true&output=csv";
 
-  /***********************
-   * DOM helpers
-   ***********************/
   const $ = (s)=>document.querySelector(s);
   const menuEl = $("#menu");
   const contentEl = $("#content");
@@ -429,20 +432,11 @@
   // Modal
   const modal = $("#modal");
   const modalImg = $("#modalImg");
-  const modalLabel = $("#modalLabel");
   $("#modalClose").addEventListener("click", ()=> modal.classList.remove("open"));
   modal.addEventListener("click", (e)=>{ if(e.target===modal) modal.classList.remove("open"); });
   window.addEventListener("keydown", (e)=>{ if(e.key==="Escape") modal.classList.remove("open"); });
+  function openModal(src){ modalImg.src = src; modal.classList.add("open"); }
 
-  function openModal(src){
-    modalImg.src = src;
-    modalLabel.textContent = "이미지 보기";
-    modal.classList.add("open");
-  }
-
-  /***********************
-   * Robust CSV parser
-   ***********************/
   function parseCSV(text){
     const rows = [];
     let row = [];
@@ -472,8 +466,6 @@
       field += c;
     }
     if (field.length || row.length){ row.push(field); rows.push(row); }
-
-    // BOM 제거
     if (rows[0] && rows[0][0]) rows[0][0] = rows[0][0].replace(/^\uFEFF/, "");
     return rows;
   }
@@ -483,28 +475,20 @@
     return header.findIndex(h => (h||"").trim().toLowerCase() === k);
   }
 
-  /***********************
-   * Safe helpers
-   ***********************/
   function escapeHtml(s){
     return (s ?? "").replace(/[&<>"']/g, (m)=>({
       "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
     }[m]));
   }
 
-  /***********************
-   * Drive link -> img src
-   ***********************/
   function driveToImg(url){
     if(!url) return "";
     const u = url.trim();
-    // file/d/<id>
     const m = u.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
     if (m && m[1]) return `https://drive.google.com/uc?export=view&id=${m[1]}`;
-    // open?id=<id>
     const m2 = u.match(/[?&]id=([a-zA-Z0-9_-]+)/);
     if (m2 && m2[1]) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
-    return u; // 이미 외부 이미지 URL이면 그대로
+    return u;
   }
   function driveThumbFallback(original){
     const m = (original||"").match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || (original||"").match(/[?&]id=([a-zA-Z0-9_-]+)/);
@@ -512,32 +496,18 @@
     return "";
   }
 
-  /***********************
-   * Body renderer
-   * - **bold**
-   * - [[table]] ... [[/table]]
-   * - bullets
-   * - segmented ➊➋➌...
-   ***********************/
+  function renderPreBlocks(s){
+    return s.replace(/\[\[pre\]\]([\s\S]*?)\[\[\/pre\]\]/g, (_,content)=> `<pre>${content}</pre>`);
+  }
   function renderTableBlocks(s){
     return s.replace(/\[\[table\]\]([\s\S]*?)\[\[\/table\]\]/g, (_, tableText)=>{
-      const lines = tableText
-        .split(/\r?\n/)
-        .map(l=>l.trim())
-        .filter(Boolean);
-
-      const rows = lines
-        .filter(l=>l.includes("|"))
-        .map(l=>l.split("|").map(x=>x.trim()));
-
+      const lines = tableText.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+      const rows = lines.filter(l=>l.includes("|")).map(l=>l.split("|").map(x=>x.trim()));
       if (rows.length < 2) return "";
-
       const head = rows[0];
       const body = rows.slice(1);
-
       const ths = head.map(h=>`<th>${escapeHtml(h)}</th>`).join("");
       const trs = body.map(r=>`<tr>${r.map(c=>`<td>${escapeHtml(c)}</td>`).join("")}</tr>`).join("");
-
       return `<table class="md"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
     });
   }
@@ -550,8 +520,7 @@
     for (const line of lines){
       const t = line.trim();
 
-      // table html line passthrough
-      if (t.includes("<table")) {
+      if (t.includes("<table") || t.includes("<pre")){
         if (inList){ out += "</ul>"; inList=false; }
         out += t;
         continue;
@@ -567,23 +536,16 @@
 
       if (inList){ out += "</ul>"; inList=false; }
 
-      if (t === ""){
-        out += `<div style="height:8px"></div>`;
-      } else {
-        out += `<div>${t}</div>`;
-      }
+      if (t === "") out += `<div style="height:8px"></div>`;
+      else out += `<div>${t}</div>`;
     }
     if (inList) out += "</ul>";
     return out;
   }
 
   function renderSegmented(s){
-    // ➊➋➌... 기준 분리
     const splitRegex = /(?=(➊|➋|➌|➍|➎|➏|➐|➑|➒|➓)\s*)/g;
-    const chunks = s
-      .split(splitRegex)
-      .map(x => (x ?? "").trim())
-      .filter(Boolean);
+    const chunks = s.split(splitRegex).map(x => (x ?? "").trim()).filter(Boolean);
 
     const items = [];
     for(let i=0;i<chunks.length;i++){
@@ -596,7 +558,6 @@
         items.push(c);
       }
     }
-
     if (items.length < 2) return null;
 
     const html = items.map((it, idx)=>{
@@ -609,7 +570,6 @@
       const head = m ? m[2] : first;
 
       const restHtml = rest ? renderPlain(rest.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")) : "";
-
       return `
         <div class="seg-item">
           <div class="seg-top">
@@ -626,30 +586,20 @@
 
   function renderBody(raw){
     if(!raw) return "";
-
-    // 1) escape 먼저 하고, 필요한 마크업만 되살리는 방식(안전 + 안정)
     let s = escapeHtml(raw);
-
-    // 2) table blocks (escape된 상태에서 처리하면 table 내부 '|' 등도 안전하게)
+    s = renderPreBlocks(s);
     s = renderTableBlocks(s);
-
-    // 3) bold
     s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-
-    // 4) segmented
     const seg = renderSegmented(s);
     if (seg) return seg;
-
-    // 5) plain (line breaks + bullets)
     return renderPlain(s);
   }
 
-  /***********************
-   * Data model + rendering
-   ***********************/
-  let SECTIONS = []; // {key,title,order,items:[...]}
+  let SECTIONS = [];
   let ACTIVE_KEY = null;
-  let SEARCH_ALL = true; // 전체 검색 / 섹션 검색
+
+  // ✅ 기본: 현재 섹션만 보기
+  let SEARCH_ALL = false;
   let QUERY = "";
 
   function normalizeNumber(x){
@@ -671,9 +621,10 @@
         <div class="menu-count">${sec.items.length}</div>
       `;
       btn.addEventListener("click", ()=>{
+        // ✅ 목차 클릭하면 해당 섹션만 표시
+        SEARCH_ALL = false;
         setActive(sec.sectionKey);
         render();
-        // mobile 편의: 클릭 시 위로
         if (window.innerWidth <= 980) window.scrollTo({top:0, behavior:"smooth"});
       });
       menuEl.appendChild(btn);
@@ -690,7 +641,6 @@
   function getFilteredItems(){
     const q = QUERY.trim().toLowerCase();
     const sectionKeys = SEARCH_ALL ? SECTIONS.map(s=>s.sectionKey) : [ACTIVE_KEY];
-
     const pickedSections = SECTIONS.filter(s => sectionKeys.includes(s.sectionKey));
 
     const matches = [];
@@ -710,17 +660,15 @@
       <div class="panel toolbar">
         <div class="toolbar-left">
           <div class="input" title="검색">
-            <span style="color:var(--muted); font-weight:900;">🔎</span>
+            <span style="color:var(--muted); font-weight:950;">🔎</span>
             <input id="searchInput" placeholder="검색 (예: 바코드, 단수, 아웃박스, 실셈…)" value="${escapeHtml(QUERY)}"/>
           </div>
           <div class="pill ${SEARCH_ALL ? "active" : ""}" id="toggleScope">
-            ${SEARCH_ALL ? "전체 검색" : "현재 섹션만"}
+            ${SEARCH_ALL ? "전체 보기" : "현재 목차만"}
           </div>
-          <div class="pill" title="검색 결과 수">
-            결과 ${totalCount}건
-          </div>
+          <div class="pill" title="검색 결과 수">결과 ${totalCount}건</div>
+          <button class="btn" id="refreshBtn">새로고침</button>
         </div>
-        <button class="btn" id="refreshBtn">새로고침</button>
       </div>
     `;
   }
@@ -738,17 +686,16 @@
 
     const matches = getFilteredItems();
 
-    // 헤더/툴바
+    // ✅ 검색을 제목 위로
     contentEl.innerHTML = `
+      ${renderToolbar(matches.length)}
       <div class="panel hero">
         <h1>${escapeHtml(activeSection.sectionTitle)}</h1>
         <p>구글 시트에서 내용을 수정하면 이 페이지에 반영됩니다.</p>
       </div>
-      ${renderToolbar(matches.length)}
       <div id="blocks"></div>
     `;
 
-    // 이벤트 바인딩
     $("#searchInput").addEventListener("input", (e)=>{
       QUERY = e.target.value;
       render();
@@ -766,8 +713,8 @@
       return;
     }
 
-    // 검색 결과가 전체면 섹션별로 묶어서 보여줌
-    const grouped = new Map(); // sectionKey -> {section, items[]}
+    // 그룹(전체보기일 때만 섹션별로 묶어 보여주기)
+    const grouped = new Map();
     for (const m of matches){
       const k = m.section.sectionKey;
       if (!grouped.has(k)) grouped.set(k, {section: m.section, items: []});
@@ -775,11 +722,11 @@
     }
 
     let html = "";
+
     for (const [k, v] of grouped.entries()){
       const sec = v.section;
       const items = v.items;
 
-      // 전체 검색일 때 섹션 헤더를 같이 보여주기
       if (SEARCH_ALL){
         html += `
           <div class="panel hero" style="box-shadow:none; margin-bottom:14px; border-radius:14px;">
@@ -790,7 +737,7 @@
       }
 
       for (const it of items){
-        const blockType = (it.blockType || "").trim();
+        const blockType = (it.blockType || "").trim(); // ✅ 스타일(class)만 적용, 텍스트로는 안 보여줌
         const cls = ["block", blockType].filter(Boolean).join(" ");
 
         const imgSrc = driveToImg(it.imageUrl);
@@ -798,10 +745,6 @@
 
         html += `
           <div class="${cls}">
-            <div class="meta-row">
-              ${blockType ? `<div class="meta">${escapeHtml(blockType)}</div>` : ``}
-              ${it.orderNum ? `<div class="meta">순서 ${it.orderNum}</div>` : ``}
-            </div>
             ${it.title ? `<div class="block-title">${escapeHtml(it.title)}</div>` : ``}
             <div class="body">${bodyHtml}</div>
             ${imgSrc ? `
@@ -815,7 +758,6 @@
 
     blocksEl.innerHTML = html;
 
-    // 이미지 클릭 확대 + 에러 fallback
     blocksEl.querySelectorAll("img[data-original]").forEach(img=>{
       img.addEventListener("click", ()=> openModal(img.src));
       img.addEventListener("error", ()=>{
@@ -825,9 +767,6 @@
     });
   }
 
-  /***********************
-   * Init (load + parse + build)
-   ***********************/
   async function init(){
     updatedBadge.textContent = `업데이트: ${new Date().toLocaleString("ko-KR")}`;
 
@@ -840,12 +779,11 @@
       contentEl.innerHTML = `
         <div class="panel hero">
           <h1>데이터 로딩 실패</h1>
-          <p style="color:#b91c1c; font-weight:900;">${escapeHtml(e.message || "Failed to fetch")}</p>
-          <p>✅ 체크</p>
+          <p style="color:#b91c1c; font-weight:950;">${escapeHtml(e.message || "Failed to fetch")}</p>
           <p style="margin:0; color:var(--muted); line-height:1.7;">
             1) 구글 시트가 ‘웹에 게시’ 상태인지<br/>
             2) 링크가 pub?output=csv 형태가 맞는지<br/>
-            3) GitHub Pages(https://...)로 접속 중인지 (로컬 file://는 막힐 수 있음)
+            3) GitHub Pages(https://...)로 접속 중인지
           </p>
         </div>
       `;
@@ -874,13 +812,12 @@
       contentEl.innerHTML = `
         <div class="panel hero">
           <h1>헤더가 맞지 않아요</h1>
-          <p>필수 헤더: sectionKey, sectionTitle (현재 CSV 1행을 확인해줘)</p>
+          <p>필수 헤더: sectionKey, sectionTitle</p>
         </div>`;
       return;
     }
 
-    // sections map
-    const map = new Map(); // sectionKey -> section
+    const map = new Map();
     for (const r of body){
       const sectionKey = (r[iSectionKey] ?? "").toString().trim();
       if(!sectionKey) continue;
@@ -897,11 +834,10 @@
         title: (iTitle >= 0 ? (r[iTitle] ?? "").toString().trim() : ""),
         body: (iBody >= 0 ? (r[iBody] ?? "").toString().trim() : ""),
         imageUrl: (iImageUrl >= 0 ? (r[iImageUrl] ?? "").toString().trim() : ""),
-        orderNum: (iOrder >= 0 ? normalizeNumber(r[iOrder]) : 0),
+        orderNum: (iOrder >= 0 ? normalizeNumber(r[iOrder]) : 0), // ✅ 화면에는 안 보이지만 정렬에 사용
       });
     }
 
-    // sort sections + sort items by order
     SECTIONS = [...map.values()]
       .sort((a,b)=>a.sectionOrder - b.sectionOrder)
       .map(sec => ({
@@ -911,15 +847,10 @@
 
     buildMenu();
 
-    // default active
     if(!ACTIVE_KEY || !SECTIONS.some(s=>s.sectionKey===ACTIVE_KEY)){
       ACTIVE_KEY = SECTIONS[0]?.sectionKey ?? null;
     }
     setActive(ACTIVE_KEY);
-
-    // reset search on refresh? (원하면 유지도 가능)
-    // QUERY = "";
-    // SEARCH_ALL = true;
 
     render();
   }
@@ -928,4 +859,3 @@
 </script>
 </body>
 </html>
-
