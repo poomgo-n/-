@@ -31,7 +31,7 @@
     .text-blue { color: #0066cc !important; }
     .text-red { color: #ff3b30 !important; }
 
-    /* 🚨 1단계/2단계 완벽한 박스 강조 스타일 (선 안 끊어지게 수정) */
+    /* 1단계/2단계 완벽한 박스 강조 스타일 */
     .soft-highlight { background-color: #ebfbee !important; border: 2px solid #00c73c !important; border-radius: 4px; font-weight: bold; position: relative; z-index: 10; }
     
     /* 가로 강조 (1단계) */
@@ -236,7 +236,7 @@
               <tbody>
                 <tr>
                   <td class="text-blue">12729093060</td><td>-</td><td>-</td>
-                  <td class="hl-cell hl-first" style="text-align:left;"품고 맨투맨 XL <span class="highlight-tag" style="left:0; top:-12px; right:auto;">품고 맨투맨 XL</span></td>
+                  <td class="hl-cell hl-first" style="text-align:left;">품고 맨투맨 XL <span class="highlight-tag" style="left:0; top:-12px; right:auto;">품고 맨투맨 XL</span></td>
                   <td class="hl-cell">-</td>
                   <td class="hl-cell">8809316432398</td>
                   <td class="hl-cell text-blue">NS1vccGxParNZr</td>
@@ -416,36 +416,36 @@
       </div>
       <div class="modal-sub">선택하신 <span class="text-green" style="font-weight: bold;">1</span>개 상품에 대해 [배송정보]를 일괄 변경합니다.</div>
 
-      <div style="border: 1px solid #e4e8eb; margin: 20px;">
-        <div class="modal-row">
+      <div style="border: 1px solid #e4e8eb; margin: 20px; background: #fbfbfc;">
+        <div class="modal-row" style="background:#fff;">
           <div class="modal-label">네이버 풀필먼트 <span class="text-red">●</span> ⓘ</div>
           <div class="modal-value"><span class="btn-toggle active soft-highlight">설정 <span class="highlight-tag">체크</span></span><span class="btn-toggle" style="border-left:none;">설정안함</span></div>
         </div>
-        <div class="modal-row" style="background: #f8f9fa;">
+        <div class="modal-row">
           <div class="modal-label" style="background:transparent;">물류사 <span class="text-red">●</span></div>
           <div class="modal-value"><select class="form-control soft-highlight" style="width: 200px; padding: 8px;"><option>품고</option></select> <span class="highlight-tag" style="top:2px;">확인</span></div>
         </div>
-        <div class="modal-row">
+        <div class="modal-row" style="background:#fff;">
           <div class="modal-label">배송여부 ⓘ</div>
           <div class="modal-value"><span class="btn-toggle active">배송</span><span class="btn-toggle" style="border-left:none;">배송없음</span></div>
         </div>
-        <div class="modal-row">
+        <div class="modal-row" style="background:#fff;">
           <div class="modal-label">배송방법</div>
           <div class="modal-value"><span class="btn-toggle active">택배, 소포, 등기</span><span class="btn-toggle" style="border-left:none;">직접배송(화물배달)</span></div>
         </div>
-        <div class="modal-row">
+        <div class="modal-row" style="background:#fff;">
           <div class="modal-label">배송속성</div>
           <div class="modal-value"><span class="btn-toggle">일반배송</span><span class="btn-toggle" style="border-left:none;">오늘출발</span><span class="btn-toggle active soft-highlight" style="border-left:none;">N배송 <span class="highlight-tag">체크</span></span></div>
         </div>
-        <div class="modal-row" style="background: #f8f9fa;">
+        <div class="modal-row">
           <div class="modal-label" style="background:transparent;">기준시간 ⓘ</div>
           <div class="modal-value"><span class="text-blue" style="text-decoration: underline; cursor:pointer;">상품 상세페이지 참고</span></div>
         </div>
-        <div class="modal-row">
+        <div class="modal-row" style="background:#fff;">
           <div class="modal-label">택배사</div>
           <div class="modal-value"><select class="form-control soft-highlight" style="width: 200px; padding: 8px;"><option>한진택배</option></select> <span class="highlight-tag" style="top:2px;">확인</span></div>
         </div>
-        <div class="modal-row">
+        <div class="modal-row" style="background:#fff;">
           <div class="modal-label">묶음배송 ⓘ</div>
           <div class="modal-value">
             <span class="btn-toggle active soft-highlight">가능 <span class="highlight-tag">체크</span></span><span class="btn-toggle" style="border-left:none;">불가(개별계산)</span>
@@ -454,7 +454,7 @@
           </div>
         </div>
         
-<div style="display: flex; border-bottom: 1px solid #f1f1f1; background: #fff;">
+        <div style="display: flex; border-bottom: 1px solid #f1f1f1; background: #fff;">
           <div style="flex: 1;">
             <div class="modal-row" style="border-bottom: none;">
               <div class="modal-label">상품별 배송비 ⓘ</div>
@@ -470,11 +470,10 @@
               </div>
             </div>
           </div>
-
           <div style="width: 320px; padding: 20px; border-left: 1px solid #f1f1f1; display: flex; align-items: center; justify-content: center; background: #fbfbfc;">
             <div style="background: #fff; border: 2px solid #333; padding: 15px; border-radius: 8px; font-size: 14px; font-weight: bold; color: #333; width: 100%; box-shadow: 2px 2px 6px rgba(0,0,0,0.05); text-align: center;">
               ▪️ 상품별 배송비 :
-              <span style="color:#00c73c; font-size: 16px; display: inline-block; margin-top: 8px;">기존 세팅된 값과 동일하게 설정</span>
+              <span style="color:#00c73c; font-size: 16px; display: inline-block; margin-top: 8px;">기존 세팅된 값과 동일하게 설정하되,제주/도서산간 추가 배송비는 필수로 입력해주세요.</span>
             </div>
           </div>
         </div>
@@ -495,47 +494,6 @@
           </div>
         </div>
         
-        <div style="display: flex; background: #fff;">
-          <div style="flex: 1;">
-            <div class="modal-row" style="border-bottom: 1px solid #f1f1f1;">
-              <div class="modal-label">반품/교환 택배사</div>
-              <div class="modal-value">
-                <select class="form-control" style="width: 350px; padding: 8px; color: #555;"><option>기본 반품택배사 - 한진택배 (네이버페이 지정택배사)</option></select>
-                <div class="info-text-green" style="line-height: 1.5; margin-top: 10px;">
-                  네이버페이 지정택배사가 아닌 별도 계약 택배사는 [판매자정보 > 배송정보] 메뉴에서 굿스플로 서비스 신청 후 이용할 수 있습니다. <span class="text-green" style="text-decoration:underline;">도움말 보기 ></span><br>
-                  ㄴ 한 택배사에 여러 계약코드가 계약되어 있는 경우, 반품 택배사가 잘못 선택되지 않도록 계약코드를 확인해주시기 바랍니다.<br>
-                  ㄴ 수정된 계약코드 구분명칭은 상품에 자동반영되지 않으므로 [판매자정보 > 배송정보 > 스토어 반품/교환택배사 > 반품/교환택배사 관리] 팝업창에서 택배사를 재선택해주시기 바랍니다.
-                </div>
-                <div class="info-text-red" style="margin-top: 5px;">동일한 배송비 묶음그룹을 가진 상품들에 각각 다른 반품/교환택배사가 설정된 경우, 수거비용이 중복 부과될 수 있으므로 유의해주시기 바랍니다. <span class="text-red" style="text-decoration:underline;">유의사항 보기 ></span></div>
-              </div>
-            </div>
-
-            <div class="modal-row" style="border-bottom: 1px solid #f1f1f1;">
-              <div class="modal-label">반품배송비(편도) ⓘ</div>
-              <div class="modal-value">
-                <div style="display: flex; align-items: center;">
-                  <input type="text" class="form-control" style="width: 150px; padding: 8px; text-align:right;" value="3,500">
-                  <span style="border: 1px solid #d4d8db; border-left: none; padding: 8px 12px; background: #fbfbfc; font-size: 12px; color: #555;">원</span>
-                </div>
-                <div class="info-text-green">최초 배송시의 배송비가 무료인 경우 왕복 배송비 7,000원이 청구됩니다.</div>
-              </div>
-            </div>
-
-            <div class="modal-row" style="border-bottom: 1px solid #f1f1f1;">
-              <div class="modal-label">교환배송비(왕복) ⓘ</div>
-              <div class="modal-value">
-                <div style="display: flex; align-items: center;">
-                  <input type="text" class="form-control" style="width: 150px; padding: 8px; text-align:right;" value="7,000">
-                  <span style="border: 1px solid #d4d8db; border-left: none; padding: 8px 12px; background: #fbfbfc; font-size: 12px; color: #555;">원</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="modal-row" style="border-bottom: none;">
-              <div class="modal-label">반품/교환지</div>
-              <div class="modal-value" style="display: flex; align-items: center; justify-content: space-between;">
-                <div>
-                  <div class="text-blue soft-highlight" style="font-weight: bold; font-size: 14px; text-decoration: underline; cursor:pointer; display:inline-block; margin-bottom: 5px;">품고 감곡센터 
         <div style="display: flex; background: #fff;">
           <div style="flex: 1;">
             <div class="modal-row" style="border-bottom: 1px solid #f1f1f1;">
