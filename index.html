@@ -31,12 +31,19 @@
     .text-blue { color: #0066cc !important; }
     .text-red { color: #ff3b30 !important; }
 
-    /* 강조 하이라이트 스타일 */
+    /* 🚨 1단계/2단계 완벽한 박스 강조 스타일 (선 안 끊어지게 수정) */
     .soft-highlight { background-color: #ebfbee !important; border: 2px solid #00c73c !important; border-radius: 4px; font-weight: bold; position: relative; z-index: 10; }
-    .cell-highlight { background-color: #ebfbee !important; font-weight: bold; color: #111; border-top: 2px solid #00c73c; border-bottom: 2px solid #00c73c; }
-    .cell-highlight-left { border-left: 2px solid #00c73c; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
-    .cell-highlight-right { border-right: 2px solid #00c73c; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
-    .col-highlight { background-color: #ebfbee !important; font-weight: bold; border-left: 2px solid #00c73c; border-right: 2px solid #00c73c; }
+    
+    /* 가로 강조 (1단계) */
+    .hl-cell { background-color: #ebfbee !important; border-top: 2px solid #00c73c !important; border-bottom: 2px solid #00c73c !important; font-weight: bold; color: #111; position: relative; z-index: 10; }
+    .hl-first { border-left: 2px solid #00c73c !important; border-top-left-radius: 4px; border-bottom-left-radius: 4px; }
+    .hl-last { border-right: 2px solid #00c73c !important; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+    
+    /* 세로 강조 (2단계) */
+    .col-highlight { background-color: #ebfbee !important; font-weight: bold; border-left: 2px solid #00c73c !important; border-right: 2px solid #00c73c !important; position: relative; z-index: 10; }
+    .col-highlight.top { border-top: 2px solid #00c73c !important; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+    .col-highlight.bottom { border-bottom: 2px solid #00c73c !important; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+
     .highlight-tag { position: absolute; top: -12px; right: -10px; background: #00c73c; color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: bold; white-space: nowrap; z-index: 11;}
 
     /* 단계별 화면 전환(스텝 마법사) */
@@ -92,12 +99,10 @@
     .data-table th { background: #fbfbfc; padding: 10px; border-bottom: 1px solid #cdd3d8; border-right: 1px solid #f1f1f1; color: #666; font-weight: normal; }
     .data-table td { padding: 10px; border-bottom: 1px solid #f1f1f1; border-right: 1px solid #f1f1f1; color: #333; vertical-align: middle; }
     
-    /* 버튼 류 */
     .btn-sm { border: 1px solid #d4d8db; background: #fff; padding: 5px 10px; font-size: 12px; cursor: pointer; color: #333; }
     .btn-blue { background: #0066cc; color: white; border: none; }
     .btn-green { background: #00c73c; color: white; border: none; }
     .btn-gray { background: #8e96a0; color: white; border: none; }
-
     .radio-green { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 4px solid #00c73c; vertical-align: middle; margin-right: 5px; }
     .radio-gray { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 1px solid #ccc; vertical-align: middle; margin-right: 5px; }
 
@@ -110,7 +115,6 @@
     .modal-value { flex: 1; padding: 15px 20px; }
     .btn-toggle { border: 1px solid #cdd3d8; background: white; padding: 8px 16px; color: #ccc; text-align: center; display: inline-block; min-width: 60px;}
     
-    /* 팝업 내 활성화 버튼은 네이버 초록색 유지 */
     .btn-toggle.active { background: #00c73c !important; color: white !important; border-color: #00c73c !important; font-weight: bold; }
     
     .info-text-green { color: #00c73c; font-size: 12px; margin-top: 5px; display: block; }
@@ -122,7 +126,7 @@
 <div class="container">
   
   <header class="page-header">
-    <img src="assets/logo.png" alt="델라고 로고" class="page-logo" onerror="this.style.display='none'">
+    <img src="assets/logo.png" alt="품고 로고" class="page-logo" onerror="this.style.display='none'">
     <h1 class="page-title">📦 품고 N배송 설정 상세 가이드</h1>
   </header>
 
@@ -232,16 +236,16 @@
               <tbody>
                 <tr>
                   <td class="text-blue">12729093060</td><td>-</td><td>-</td>
-                  <td class="cell-highlight cell-highlight-left" style="text-align:left; position:relative;">델라고 오일마스터 프라이팬세트 데일리... <span class="highlight-tag" style="left:0; top:-12px; right:auto;">이 값들을 확인!</span></td>
-                  <td class="cell-highlight">-</td>
-                  <td class="cell-highlight">8809316432398</td>
-                  <td class="cell-highlight text-blue">NS1vccGxParNZr</td>
-                  <td class="cell-highlight"></td>
-                  <td class="cell-highlight">1</td>
-                  <td class="cell-highlight cell-highlight-right" style="text-align:left;">오일마스터 데일리듀오세트</td>
+                  <td class="hl-cell hl-first" style="text-align:left;"품고 맨투맨 XL <span class="highlight-tag" style="left:0; top:-12px; right:auto;">이 값들을 확인!</span></td>
+                  <td class="hl-cell">-</td>
+                  <td class="hl-cell">8809316432398</td>
+                  <td class="hl-cell text-blue">NS1vccGxParNZr</td>
+                  <td class="hl-cell"></td>
+                  <td class="hl-cell">1</td>
+                  <td class="hl-cell hl-last" style="text-align:left;">품고 맨투맨 XL</td>
                 </tr>
                 <tr>
-                  <td class="text-blue">12668641487</td><td>-</td><td>-</td><td style="text-align:left;">델라고 스텐 팬 무연마제 후라이팬 동5중 ...</td><td>-</td><td>8809316430639</td><td class="text-blue">NS1vMISl95Ywfe</td><td></td><td>1</td><td style="text-align:left;">동5중 무연마팬_멀티웍18</td>
+                  <td class="text-blue">12668641487</td><td>-</td><td>-</td><td style="text-align:left;">품고 맨투맨 L</td><td>-</td><td>8809316430639</td><td class="text-blue">NS1vMISl95Ywfe</td><td></td><td>1</td><td style="text-align:left;">품고 맨투맨 L</td>
                 </tr>
               </tbody>
             </table>
@@ -308,7 +312,7 @@
                   <th>바코드</th>
                   <th>SKU 명</th>
                   <th>보관온도</th>
-                  <th class="col-highlight" style="border-top: 2px solid #00c73c; position:relative;">판매가능 재고수량 ⓘ <span class="highlight-tag">전체 수량 확인!</span></th>
+                  <th class="col-highlight top">판매가능 재고수량 ⓘ <span class="highlight-tag">전체 수량 확인!</span></th>
                   <th>연결상품수</th>
                 </tr>
               </thead>
@@ -317,7 +321,7 @@
                   <td><input type="checkbox"></td>
                   <td class="text-blue">NS1ua7n54QvZb8</td>
                   <td>8809316430578</td>
-                  <td style="text-align:left;">델라고 세라믹 IH 인덕션 베로 궁중팬28</td>
+                  <td style="text-align:left;">품고 맨투맨 XL</td>
                   <td>상온</td>
                   <td class="col-highlight" style="font-size:14px;">136</td>
                   <td>1개</td>
@@ -326,9 +330,9 @@
                   <td><input type="checkbox"></td>
                   <td class="text-blue">NS1vSpmyWlOsi5</td>
                   <td>8809316432312</td>
-                  <td style="text-align:left;">델라고 오일마스터 프라이팬 세트 올라운드 세트 3종</td>
+                  <td style="text-align:left;">품고 맨투맨 L</td>
                   <td>상온</td>
-                  <td class="col-highlight" style="font-size:14px; border-bottom: 2px solid #00c73c;">144</td>
+                  <td class="col-highlight bottom" style="font-size:14px;">144</td>
                   <td>1개</td>
                 </tr>
               </tbody>
@@ -395,29 +399,7 @@
               <td><button class="btn-sm btn-gray" style="padding: 6px 15px;">그룹 설정</button></td>
               <td class="text-blue">13256767747</td>
               <td></td>
-              <td style="text-align:left;">델라고 무연마제 스텐 뚝배기 알...</td>
-              <td class="text-blue">N / N</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td><button class="btn-sm btn-green" style="padding: 6px 12px;">수정</button></td>
-              <td><button class="btn-sm btn-green" style="padding: 6px 12px;">복사</button></td>
-              <td><button class="btn-sm btn-blue" style="padding: 6px 15px;">시작하기</button></td>
-              <td><button class="btn-sm btn-gray" style="padding: 6px 15px;">그룹 설정</button></td>
-              <td class="text-blue">12729186094</td>
-              <td></td>
-              <td style="text-align:left;">델라고 오일마스터 프라이팬세...</td>
-              <td class="text-blue">N / N</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td><button class="btn-sm btn-green" style="padding: 6px 12px;">수정</button></td>
-              <td><button class="btn-sm btn-green" style="padding: 6px 12px;">복사</button></td>
-              <td><button class="btn-sm btn-blue" style="padding: 6px 15px;">시작하기</button></td>
-              <td><button class="btn-sm btn-gray" style="padding: 6px 15px;">그룹 설정</button></td>
-              <td class="text-blue">12729158885</td>
-              <td></td>
-              <td style="text-align:left;">델라고 오일마스터 프라이팬세...</td>
+              <td style="text-align:left;">품고 맨투맨 L</td>
               <td class="text-blue">N / N</td>
             </tr>
           </tbody>
@@ -504,14 +486,14 @@
         
         <div class="modal-row">
           <div class="modal-label">반품/교환 택배사</div>
-          <div class="modal-value">
+          <div class="modal-value" style="background: #fff;">
             <select class="form-control" style="width: 350px; padding: 8px; color: #555;"><option>기본 반품택배사 - 한진택배 (네이버페이 지정택배사)</option></select>
-            <div class="info-text-green" style="line-height: 1.5;">
+            <div class="info-text-green" style="line-height: 1.5; margin-top: 10px;">
               네이버페이 지정택배사가 아닌 별도 계약 택배사는 [판매자정보 > 배송정보] 메뉴에서 굿스플로 서비스 신청 후 이용할 수 있습니다. <span class="text-green" style="text-decoration:underline;">도움말 보기 ></span><br>
               ㄴ 한 택배사에 여러 계약코드가 계약되어 있는 경우, 반품 택배사가 잘못 선택되지 않도록 계약코드를 확인해주시기 바랍니다.<br>
               ㄴ 수정된 계약코드 구분명칭은 상품에 자동반영되지 않으므로 [판매자정보 > 배송정보 > 스토어 반품/교환택배사 > 반품/교환택배사 관리] 팝업창에서 택배사를 재선택해주시기 바랍니다.
             </div>
-            <div class="info-text-red">동일한 배송비 묶음그룹을 가진 상품들에 각각 다른 반품/교환택배사가 설정된 경우, 수거비용이 중복 부과될 수 있으므로 유의해주시기 바랍니다. <span class="text-red" style="text-decoration:underline;">유의사항 보기 ></span></div>
+            <div class="info-text-red" style="margin-top: 5px;">동일한 배송비 묶음그룹을 가진 상품들에 각각 다른 반품/교환택배사가 설정된 경우, 수거비용이 중복 부과될 수 있으므로 유의해주시기 바랍니다. <span class="text-red" style="text-decoration:underline;">유의사항 보기 ></span></div>
           </div>
         </div>
 
@@ -540,17 +522,22 @@
           <div class="modal-label">반품/교환지</div>
           <div class="modal-value" style="display: flex; align-items: center; justify-content: space-between;">
             <div>
-              <div class="text-blue soft-highlight" style="font-weight: bold; font-size: 14px; text-decoration: underline; cursor:pointer; display:inline-block; margin-bottom: 5px;">델라고<span class="highlight-tag">판매자 주소록에서 선택</span></div><br>
+              <div class="text-blue soft-highlight" style="font-weight: bold; font-size: 14px; text-decoration: underline; cursor:pointer; display:inline-block; margin-bottom: 5px;">델라고</div><br>
               <span class="text-blue" style="font-size: 14px;">경상남도 김해시 생림면 인제로611번길 62 (우 : 50802)</span>
             </div>
-            <button style="background: #6c757d; color: white; border: none; padding: 12px 20px; font-weight: bold; cursor: pointer;">판매자 주소록</button>
+            <div style="position: relative;">
+              <span class="highlight-tag" style="top:-22px; right: -5px;">판매자 주소록에서 선택</span>
+              <button style="background: #6c757d; color: white; border: none; padding: 12px 20px; font-weight: bold; cursor: pointer; border-radius: 2px;">판매자 주소록</button>
+            </div>
           </div>
         </div>
       </div>
       
       <div style="text-align: center; padding: 25px; border-top: 1px solid #e4e8eb;">
-        <span class="btn-search soft-highlight" style="font-size: 16px; padding: 10px 40px;">변경 <span class="highlight-tag" style="top:-12px;">마지막 클릭!</span></span>
-        <span class="btn-reset" style="font-size: 16px; padding: 10px 40px; margin-left: 10px; border: 1px solid #ccc; color: #555;">닫기</span>
+        <span class="btn-search" style="font-size: 16px; padding: 10px 40px; background-color: #00c73c !important; color: white !important; font-weight: bold; cursor: pointer; display: inline-block; position: relative;">
+          변경 <span class="highlight-tag" style="top:-12px; right:-10px;">마지막 클릭!</span>
+        </span>
+        <span class="btn-reset" style="font-size: 16px; padding: 10px 40px; margin-left: 10px; border: 1px solid #ccc; color: #555; cursor: pointer; display: inline-block;">닫기</span>
       </div>
     </div>
     
